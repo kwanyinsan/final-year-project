@@ -31,8 +31,6 @@ class DatabaseService {
     });
   }
 
-
-
   List<Restaurant> _resListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc){
       //print(doc.data);
