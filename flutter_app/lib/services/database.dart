@@ -62,7 +62,7 @@ class DatabaseService {
 
   // get user doc stream
   Stream<UserData> get userData {
-    return resCollection.document(uid).snapshots()
+    return userCollection.document(uid).snapshots()
         .map(_userDataFromSnapshot);
   }
 

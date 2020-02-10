@@ -7,16 +7,74 @@ import 'package:flutter_app/screen/authenticate/authenticate.dart';
 import 'package:flutter_app/screen/home/restaurant_list.dart';
 
 
-class Home extends StatelessWidget {
+
+class Home extends StatefulWidget {
 
   @override
-  Widget build(BuildContext context) {
+  _HomeState createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+  String appBarTitle = 'Home';
+  Widget widgetForBody = ResList();
+  @override
+  Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     return Scaffold(
-      drawer: HomeDrawer(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Team Orange App'),
+              decoration: BoxDecoration(
+                color: Colors.deepOrange,
+              ),
+            ),
+            ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+                onTap: () {
+                  setState((){
+                    widgetForBody = ResList();
+                    appBarTitle = 'Home';
+                  });
+                  Navigator.pop(context);
+                }),
+            ListTile(
+                leading: Icon(Icons.restaurant_menu),
+                title: Text("Reviews"),
+                onTap: () async {
+                  Navigator.pop(context);
+                }),
+            ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Profile'),
+                onTap: () async{
+                  Navigator.pop(context);
+                  if (user != null) {
+                    setState((){
+                      widgetForBody = Profile();
+                      appBarTitle = 'Profile';
+                    });
+                  } else {
+                    print('error: user have not signed in');
+                  }
+                }),
+            ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+                onTap: () {
+
+                  Navigator.pop(context);
+                }),
+            LoginLogout(),
+          ],
+        ),
+      ),
       backgroundColor: Colors.deepOrange[100],
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text(appBarTitle),
         backgroundColor: Colors.deepOrange,
         elevation: 0.0,
         actions: <Widget>[
@@ -27,62 +85,14 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: ResList()
+      body: widgetForBody
     );
   }
 }
 
-class HomeDrawer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-        return Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text('Team Orange App'),
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                ),
-              ),
-              ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Home'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                  }),
-              ListTile(
-                  leading: Icon(Icons.restaurant_menu),
-                  title: Text("Reviews"),
-                  onTap: () {
-                    Navigator.pop(context);
-                  }),
-              ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Profile'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Profile()),
-                    );
-                  }),
-              ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                  }),
-              LoginLogout(),
-            ],
-          ),
-        );
-      }
-}
 
 class LoginLogout extends StatelessWidget {
   final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
@@ -91,8 +101,12 @@ class LoginLogout extends StatelessWidget {
           leading: Icon(Icons.exit_to_app),
           title: Text('Logout'),
           onTap: () async {
-            _auth.signOut();
             Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
+            );
+            _auth.signOut();
           });
     } else
       return ListTile(
