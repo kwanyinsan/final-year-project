@@ -1,9 +1,10 @@
+import 'package:flutter_app/screen/home/profile.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/screen/authenticate/authenticate.dart';
+import 'package:flutter_app/screen/home/restaurant_list.dart';
 
 
 class Home extends StatelessWidget {
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
       drawer: HomeDrawer(),
       backgroundColor: Colors.deepOrange[100],
       appBar: AppBar(
-        title: Text('Restaurants'),
+        title: Text('Home'),
         backgroundColor: Colors.deepOrange,
         elevation: 0.0,
         actions: <Widget>[
@@ -26,30 +27,7 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: BuildResList()
-    );
-  }
-}
-
-class BuildResList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new StreamBuilder(
-      stream: Firestore.instance.collection('restaurant').snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasData) {
-          return new ListView(
-            children: snapshot.data.documents.map((res) {
-              return new ListTile(
-                title: Text(res['name']),
-                subtitle: Text(res['type']),
-              );
-            }).toList(),
-          );
-        } else {
-          return new Text("Loading...");
-        }
-      },
+      body: ResList()
     );
   }
 }
@@ -84,6 +62,10 @@ class HomeDrawer extends StatelessWidget {
                   title: Text('Profile'),
                   onTap: () async {
                     Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Profile()),
+                    );
                   }),
               ListTile(
                   leading: Icon(Icons.settings),
@@ -98,12 +80,7 @@ class HomeDrawer extends StatelessWidget {
       }
 }
 
-class LoginLogout extends StatefulWidget {
-  @override
-  _LoginLogoutState createState() => _LoginLogoutState();
-}
-
-class _LoginLogoutState extends State<LoginLogout> {
+class LoginLogout extends StatelessWidget {
   final AuthService _auth = AuthService();
 
   @override
@@ -115,29 +92,18 @@ class _LoginLogoutState extends State<LoginLogout> {
           title: Text('Logout'),
           onTap: () async {
             _auth.signOut();
+            Navigator.pop(context);
           });
     } else
       return ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Login'),
           onTap: () {
-            return Authenticate();
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Authenticate()),
+            );
           });
-  }
-}
-
-class Profile extends StatelessWidget {
-  @override
-  Widget build (BuildContext context) {
-    User user = Provider.of<User>(context);
-    return StreamBuilder(
-        stream: Firestore.instance.collection('userdata').document(user.uid).snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return new Text("Loading");
-          }
-          var userData = snapshot.data;
-          return Text(userData['name']);
-        });
   }
 }

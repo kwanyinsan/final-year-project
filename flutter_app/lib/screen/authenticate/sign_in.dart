@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.info),
-            label: Text('Info'),
+            label: Text('Register'),
             onPressed: () => widget.toggleView(),
           ),
         ],
@@ -81,7 +81,8 @@ class _SignInState extends State<SignIn> {
                           loading = false;
                           error = 'Could not sign in with those credentials';
                         });
-                      }
+                      } else
+                      Navigator.pop(context);
                     }
                   }
               ),
