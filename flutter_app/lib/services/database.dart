@@ -8,9 +8,9 @@ class DatabaseService {
   DatabaseService({ this.uid });
 
   // collection reference
-  final CollectionReference brewCollection = Firestore.instance.collection('brews');
   final CollectionReference userCollection = Firestore.instance.collection('userdata');
   final CollectionReference resCollection = Firestore.instance.collection('restaurant');
+  final CollectionReference reviewCollection = Firestore.instance.collection('review');
 
   Future<void> newRes(String name, String type, int phone, String location, int like, int dislike, String image) async {
     return await resCollection.document().setData({
@@ -35,13 +35,14 @@ class DatabaseService {
     return snapshot.documents.map((doc){
       //print(doc.data);
       return Restaurant(
-          name: doc.data['name'] ?? '',
-          phone: doc.data['phone'] ?? 0,
-          type: doc.data['type'] ?? '',
-          like: doc.data['like'] ?? 0,
-          dislike: doc.data['dislike'] ?? 0,
-          image: doc.data['image'] ?? '',
-          //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
+        restaurant_id: doc.documentID ?? '',
+        name: doc.data['name'] ?? '',
+        phone: doc.data['phone'] ?? 0,
+        type: doc.data['type'] ?? '',
+        like: doc.data['like'] ?? 0,
+        dislike: doc.data['dislike'] ?? 0,
+        image: doc.data['image'] ?? '',
+        //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
     }).toList();
   }
@@ -50,17 +51,17 @@ class DatabaseService {
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
         uid: uid,
-        name: snapshot.data['name'],
-        school: snapshot.data['school'],
+        name: snapshot.data['name'] ?? [],
+        school: snapshot.data['school'] ?? [],
     );
   }
+
 
   Stream<List<Restaurant>> get res {
     return resCollection.snapshots()
         .map(_resListFromSnapshot);
   }
 
-  // get user doc stream
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots()
         .map(_userDataFromSnapshot);

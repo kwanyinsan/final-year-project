@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
                       appBarTitle = 'Profile';
                     });
                   } else {
+                    // TODO: add alert
                     print('error: user have not signed in');
                   }
                 }),

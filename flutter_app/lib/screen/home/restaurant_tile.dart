@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
+import 'package:flutter_app/screen/home/restaurant_page.dart';
 
 class ResTile extends StatelessWidget {
 
@@ -18,12 +19,20 @@ class ResTile extends StatelessWidget {
             backgroundColor: Colors.deepOrange,
             backgroundImage: NetworkImage('${res.image}'),
           ),
+          trailing: Icon(Icons.keyboard_arrow_right),
           title: Text('${res.name}'),
           subtitle: Text('Like: ${res.like}, Dislike: ${res.dislike}'
               '\nFood Type: ${res.type}'
               '\nPhone: ${res.phone}'
               '\nLocation: ${res.location}'
+              '\nRestaurant ID: ${res.restaurant_id}'
           ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ResPage(res: res)),
+            );
+          },
         ),
       ),
     );
