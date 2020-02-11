@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
                       context,
                       MaterialPageRoute(builder: (context) => Authenticate()),
                     );
-                    showAlertDialog(context);
+                    showAlertDialog(context, 'asasasas');
                     print('error: user have not signed in');
                   }
                 }),

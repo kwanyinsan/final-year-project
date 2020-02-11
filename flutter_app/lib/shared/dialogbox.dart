@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context, arg1) {
 
   // set up the buttons
   Widget remindButton = FlatButton(
-    child: Text("Remind me later"),
+    child: Text(arg1),
     onPressed:  () {},
   );
   Widget cancelButton = FlatButton(

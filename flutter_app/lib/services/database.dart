@@ -24,10 +24,12 @@ class DatabaseService {
     });
   }
 
-  Future<void> newUser(String name, String school) async {
+  Future<void> newUser(String name, String school, String email, String avatar) async {
     return await userCollection.document(uid).setData({
       'name': name,
       'school': school,
+      'email' : email,
+      'avatar' : avatar,
     });
   }
 
@@ -50,9 +52,11 @@ class DatabaseService {
   // user data from snapshots
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
-        uid: uid,
-        name: snapshot.data['name'] ?? [],
-        school: snapshot.data['school'] ?? [],
+      uid: uid,
+      name: snapshot.data['name'] ?? [],
+      school: snapshot.data['school'] ?? [],
+      email: snapshot.data['email'] ?? [],
+      avatar: snapshot.data['avatar'] ?? [],
     );
   }
 

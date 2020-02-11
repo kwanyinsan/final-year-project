@@ -92,7 +92,11 @@ class _RegisterState extends State<Register> {
                   onPressed: () async {
                     if(_formKey.currentState.validate()){
                       setState(() => loading = true);
-                      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school);
+                      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school, 'https://i.imgur.com/GcqJ5NM.png');
+                      if (result != null) {
+                        //TODO: scuessfully registered
+                        Navigator.pop(context);
+                      } else
                       if(result == null) {
                         setState(() {
                           loading = false;
