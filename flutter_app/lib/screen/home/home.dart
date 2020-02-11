@@ -59,6 +59,10 @@ class _HomeState extends State<Home> {
                     });
                   } else {
                     // TODO: add alert
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Authenticate()),
+                    );
                     print('error: user have not signed in');
                   }
                 }),
@@ -86,7 +90,8 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: widgetForBody
+      body: widgetForBody,
+      floatingActionButton: AddMenu(),
     );
   }
 }
@@ -120,5 +125,33 @@ class LoginLogout extends StatelessWidget {
               MaterialPageRoute(builder: (context) => Authenticate()),
             );
           });
+  }
+}
+
+class AddMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {},
+      child: PopupMenuButton<String>(
+        onSelected: choiceAction,
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>> [
+          const PopupMenuItem<String>(
+            value: 'addRes',
+            child: Text('Add a Restaurant'),
+          ),
+          const PopupMenuItem<String>(
+            value: 'addReview',
+            child: Text('Add a Review'),
+          ),
+        ],
+        icon: Icon(Icons.add),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+  }
+
+  void choiceAction(String choice) {
+    print('working');
   }
 }

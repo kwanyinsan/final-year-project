@@ -13,11 +13,11 @@ class ReviewService {
     return snapshot.documents.map((doc){
       print(doc.data);
       return Review(
-        restaurant_id: doc.data['restaurant_id'],
-        content: doc.data['content'],
-        dislike: doc.data['dislike'],
-        like: doc.data['like'],
-        user_id: doc.data['user_id'],
+        restaurant_id: doc.data['restaurant_id'] ?? [],
+        content: doc.data['review_content'] ?? [],
+        dislike: doc.data['review_dislike'] ?? 0,
+        like: doc.data['review_like'] ?? 0,
+        user_id: doc.data['user_id'] ?? [],
       );
     }).toList();
   }
