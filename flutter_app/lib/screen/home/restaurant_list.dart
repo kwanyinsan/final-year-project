@@ -3,7 +3,7 @@ import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/loading.dart';
-
+import 'package:flutter_app/screen/home/add/add_button.dart';
 class ResList extends StatefulWidget {
   @override
   _ResListState createState() => _ResListState();
@@ -70,10 +70,25 @@ class ResTile extends StatelessWidget {
                     '${res.name}',
                     style: Theme.of(context).textTheme.headline,
                   ),
+
                 ],
               ),
-              Text('Like: ${res.like}, Dislike: ${res.dislike}'
-                  '\nFood Type: ${res.type}'
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 40,),
+                  Icon(
+                    Icons.thumb_up,
+                  ),
+                  SizedBox(width: 10,),
+                  Text('Like: ${res.like}'),
+                  SizedBox(width: 30,),
+                  Icon(Icons.thumb_down,),
+                  SizedBox(width: 10,),
+                  Text('Dislike: ${res.dislike}'),
+                ],
+              ),
+              Text(
+                  'Food Type: ${res.type}'
                   '\nPhone: ${res.phone}'
                   '\nPrice: ${res.price}'
                   '\nLocation: Lat:${res.location.latitude}, Long:${res.location.longitude}'
@@ -82,6 +97,8 @@ class ResTile extends StatelessWidget {
           ),
         ),
       ),
+
     );
+
   }
 }
