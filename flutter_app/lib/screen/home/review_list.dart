@@ -55,7 +55,7 @@ class ReviewTile extends StatelessWidget {
                   leading: CircleAvatar(
                   radius: 30.0,
                   backgroundColor: Colors.deepOrange,
-                  backgroundImage: NetworkImage('https://i.imgur.com/GcqJ5NM.png'),
+                  backgroundImage: NetworkImage('${userData.avatar}'),
                 ),
                   title: Text('${userData.name}'),
                   subtitle: Text(

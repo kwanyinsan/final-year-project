@@ -4,8 +4,9 @@ showAlertDialog(BuildContext context, arg1) {
 
   // set up the buttons
   Widget remindButton = FlatButton(
-    child: Text(arg1),
-    onPressed:  () {},
+    child: Text('ok'),
+    onPressed:  () {
+    },
   );
   Widget cancelButton = FlatButton(
     child: Text("Cancel"),
@@ -18,12 +19,10 @@ showAlertDialog(BuildContext context, arg1) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Notice"),
-    content: Text("Launching this missile will destroy the entire universe. Is this what you intended to do?"),
+    title: Text("hi bro"),
+    content: Text("you have not sign in yet."),
     actions: [
       remindButton,
-      cancelButton,
-      launchButton,
     ],
   );
 

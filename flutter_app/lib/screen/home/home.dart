@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/screen/authenticate/authenticate.dart';
 import 'package:flutter_app/screen/home/restaurant_list.dart';
+import 'package:flutter_app/screen/home/add_button.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
 
 
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
                       context,
                       MaterialPageRoute(builder: (context) => Authenticate()),
                     );
-                    showAlertDialog(context, 'asasasas');
+                    showAlertDialog(context, '');
                     print('error: user have not signed in');
                   }
                 }),
@@ -93,7 +94,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: widgetForBody,
-      floatingActionButton: AddMenu(),
+      floatingActionButton: AddButton(),
     );
   }
 }
@@ -127,33 +128,5 @@ class LoginLogout extends StatelessWidget {
               MaterialPageRoute(builder: (context) => Authenticate()),
             );
           });
-  }
-}
-
-class AddMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {},
-      child: PopupMenuButton<String>(
-        onSelected: choiceAction,
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>> [
-          const PopupMenuItem<String>(
-            value: 'addRes',
-            child: Text('Add a Restaurant'),
-          ),
-          const PopupMenuItem<String>(
-            value: 'addReview',
-            child: Text('Add a Review'),
-          ),
-        ],
-        icon: Icon(Icons.add),
-      ),
-      backgroundColor: Colors.deepOrange,
-    );
-  }
-
-  void choiceAction(String choice) {
-    print('working');
   }
 }

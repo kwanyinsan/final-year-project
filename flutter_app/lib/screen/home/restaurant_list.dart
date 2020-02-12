@@ -31,38 +31,55 @@ class _ResListState extends State<ResList> {
   }
 }
 
-
 class ResTile extends StatelessWidget {
-
   final Restaurant res;
-  ResTile({ this.res });
+  ResTile({this.res});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(5, 5, 5, 3),
-      child: Card(
-        margin: EdgeInsets.zero,
-        child: ListTile(
-          leading: CircleAvatar(
-            radius: 30.0,
-            backgroundColor: Colors.deepOrange,
-            backgroundImage: NetworkImage('${res.image}'),
-          ),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          title: Text('${res.name}'),
-          subtitle: Text('Like: ${res.like}, Dislike: ${res.dislike}'
-              '\nFood Type: ${res.type}'
-              '\nPhone: ${res.phone}'
-              '\nLocation: ${res.location}'
-              '\nRestaurant ID: ${res.restaurant_id}'
-          ),
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          splashColor: Colors.deepOrange,
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ResPage(res: res)),
             );
           },
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage('${res.image}'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.restaurant_menu),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    '${res.name}',
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                ],
+              ),
+              Text('Like: ${res.like}, Dislike: ${res.dislike}'
+                  '\nFood Type: ${res.type}'
+                  '\nPhone: ${res.phone}'
+                  '\nPrice: ${res.price}'
+                  '\nLocation: Lat:${res.location.latitude}, Long:${res.location.longitude}'
+                  '\nRestaurant ID: ${res.restaurant_id}'),
+            ],
+          ),
         ),
       ),
     );

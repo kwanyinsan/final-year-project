@@ -11,7 +11,7 @@ class ReviewService {
 
   List<Review> _reviewFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc){
-      print(doc.data);
+      //print(doc.data);
       return Review(
         restaurant_id: doc.data['restaurant_id'] ?? [],
         content: doc.data['review_content'] ?? [],

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/constants.dart';
@@ -6,34 +5,30 @@ import 'package:flutter_app/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddRes extends StatefulWidget {
-
+class AddReview extends StatefulWidget {
   @override
-  _AddResState createState() => _AddResState();
+  _AddReviewState createState() => _AddReviewState();
 }
 
-class _AddResState extends State<AddRes> {
+class _AddReviewState extends State<AddReview> {
+
   final _formKey = GlobalKey<FormState>();
 
   String _currentName;
-  String _currentAvatar;
-  int _currentPrice;
-  String _currentType;
+  String _currentSchool;
 
-  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text("Add Review"),
+        backgroundColor: Colors.deepOrange,
+        title: Text("Add Review"),
       ),
       body: Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
             Text(
-              'Add a new Restaurant',
+              'Update your brew settings.',
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 20.0),
@@ -44,13 +39,16 @@ class _AddResState extends State<AddRes> {
               onChanged: (val) => setState(() => _currentName = val),
             ),
             SizedBox(height: 10.0),
-            TextFormField(
-              initialValue: '',
-              decoration: textInputDecoration,
-              validator: (val) => val.isEmpty ? 'Please enter a name' : null,
-              onChanged: (val) => setState(() => _currentAvatar = val),
-            ),
             SizedBox(height: 10.0),
+//                  Slider(
+//                    value: (_currentStrength ?? userData.strength).toDouble(),
+//                    activeColor: Colors.brown[_currentStrength ?? userData.strength],
+//                    inactiveColor: Colors.brown[_currentStrength ?? userData.strength],
+//                    min: 100.0,
+//                    max: 900.0,
+//                    divisions: 8,
+//                    onChanged: (val) => setState(() => _currentStrength = val.round()),
+//                  ),
             RaisedButton(
                 color: Colors.pink[400],
                 child: Text(
@@ -59,14 +57,19 @@ class _AddResState extends State<AddRes> {
                 ),
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                    await DatabaseService().newRes('name_addtest', 'type_addtest', 00000000, new GeoPoint(0, 0), 0, 0, 'https://i.imgur.com/gTp3dlW.png');
+                    //await DatabaseService(uid: user.uid).updateUserData(
+
+                    //_currentSugars ?? snapshot.data.sugars,
+                    //_currentName ?? snapshot.data.name,
+                    //_currentStrength ?? snapshot.data.strength
+                    //);
                     Navigator.pop(context);
                   }
                 }
-                ),
-                  ],
-                ),
-              ),
+            ),
+          ],
+        ),
+      ),
     );
-        }
+  }
 }

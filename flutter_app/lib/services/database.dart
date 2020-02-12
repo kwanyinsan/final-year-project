@@ -12,7 +12,7 @@ class DatabaseService {
   final CollectionReference resCollection = Firestore.instance.collection('restaurant');
   final CollectionReference reviewCollection = Firestore.instance.collection('review');
 
-  Future<void> newRes(String name, String type, int phone, String location, int like, int dislike, String image) async {
+  Future<void> newRes(String name, String type, int phone, GeoPoint location, int like, int dislike, String image) async {
     return await resCollection.document().setData({
       'name': name,
       'type': type,
@@ -43,6 +43,8 @@ class DatabaseService {
         type: doc.data['type'] ?? '',
         like: doc.data['like'] ?? 0,
         dislike: doc.data['dislike'] ?? 0,
+        location: doc.data['location'] ?? new GeoPoint(0, 0),
+        price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
