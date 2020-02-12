@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screen/home/add_review.dart';
-import 'package:flutter_app/screen/home/add_restaurant.dart';
+import 'package:flutter_app/screen/home/add/add_restaurant.dart';
+import 'package:flutter_app/screen/home/add/add_review.dart';
 import 'package:flutter_app/screen/home/restaurant_list.dart';
 
 enum PageEnum {

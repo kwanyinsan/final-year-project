@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/constants.dart';
 import 'package:flutter_app/shared/loading.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SettingsForm extends StatefulWidget {

@@ -1,12 +1,13 @@
-import 'package:flutter_app/screen/home/profile.dart';
-import 'package:flutter_app/services/auth.dart';
-import 'package:flutter_app/models/user.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_app/screen/authenticate/authenticate.dart';
-import 'package:flutter_app/screen/home/restaurant_list.dart';
-import 'package:flutter_app/screen/home/add_button.dart';
-import 'package:flutter_app/shared/dialogbox.dart';
+  import 'package:flutter_app/models/user.dart';
+  import 'package:flutter_app/screen/authenticate/authenticate.dart';
+  import 'package:flutter_app/screen/home/add/add_button.dart';
+  import 'package:flutter_app/screen/profile/profile.dart';
+  import 'package:flutter_app/screen/home/restaurant_list.dart';
+  import 'package:flutter_app/services/auth.dart';
+  import 'package:flutter_app/shared/dialogbox.dart';
+  import 'package:provider/provider.dart';
+  import 'package:flutter_app/screen/reviews/reviews.dart';
 
 
 
@@ -47,6 +48,10 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.restaurant_menu),
                 title: Text("Reviews"),
                 onTap: () async {
+                  setState((){
+                    widgetForBody = Reviews();
+                    appBarTitle = 'Reviews';
+                  });
                   Navigator.pop(context);
                 }),
             ListTile(

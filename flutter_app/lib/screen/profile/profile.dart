@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screen/home/profile_builder.dart';
+import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/screen/profile/profile_builder.dart';
+import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_app/services/database.dart';
-import 'package:flutter_app/models/user.dart';
 
 class Profile extends StatefulWidget {
   @override

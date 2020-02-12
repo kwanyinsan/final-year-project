@@ -1,10 +1,10 @@
-import 'package:flutter_app/models/review.dart';
-import 'package:flutter_app/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/restaurant.dart';
+import 'package:flutter_app/models/review.dart';
+import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/review.dart';
 import 'package:flutter_app/shared/loading.dart';
-import 'package:flutter_app/models/restaurant.dart';
-import 'package:flutter_app/models/user.dart';
 
 class ReviewList extends StatelessWidget {
 
