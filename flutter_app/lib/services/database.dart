@@ -2,6 +2,7 @@ import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class DatabaseService {
 
   final String uid;
@@ -10,7 +11,6 @@ class DatabaseService {
   // collection reference
   final CollectionReference userCollection = Firestore.instance.collection('userdata');
   final CollectionReference resCollection = Firestore.instance.collection('restaurant');
-  final CollectionReference reviewCollection = Firestore.instance.collection('review');
 
   Future<void> newRes(String name, String type, int phone, GeoPoint location, int like, int dislike, String image) async {
     return await resCollection.document().setData({

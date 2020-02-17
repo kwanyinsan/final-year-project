@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-  import 'package:flutter_app/models/user.dart';
-  import 'package:flutter_app/screen/authenticate/authenticate.dart';
-  import 'package:flutter_app/screen/home/add/add_button.dart';
-  import 'package:flutter_app/screen/profile/profile.dart';
-  import 'package:flutter_app/screen/home/restaurant_list.dart';
-  import 'package:flutter_app/services/auth.dart';
-  import 'package:flutter_app/shared/dialogbox.dart';
-  import 'package:provider/provider.dart';
-  import 'package:flutter_app/screen/reviews/reviews.dart';
-
-
+import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/screen/authenticate/authenticate.dart';
+import 'package:flutter_app/screen/home/add/add_button.dart';
+import 'package:flutter_app/screen/profile/profile.dart';
+import 'package:flutter_app/screen/home/restaurant_list.dart';
+import 'package:flutter_app/services/auth.dart';
+import 'package:flutter_app/shared/dialogbox.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_app/screen/reviews/reviews.dart';
+import 'package:flutter_app/screen/home/search.dart';
 
 class Home extends StatefulWidget {
-
   @override
   _HomeState createState() => _HomeState();
 }
@@ -38,7 +36,7 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.home),
                 title: Text('Home'),
                 onTap: () {
-                  setState((){
+                  setState(() {
                     widgetForBody = ResList();
                     appBarTitle = 'Home';
                   });
@@ -48,7 +46,7 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.restaurant_menu),
                 title: Text("Reviews"),
                 onTap: () async {
-                  setState((){
+                  setState(() {
                     widgetForBody = Reviews();
                     appBarTitle = 'Reviews';
                   });
@@ -57,10 +55,10 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: Icon(Icons.person),
                 title: Text('Profile'),
-                onTap: () async{
+                onTap: () async {
                   Navigator.pop(context);
                   if (user != null) {
-                    setState((){
+                    setState(() {
                       widgetForBody = Profile();
                       appBarTitle = 'Profile';
                     });
@@ -78,7 +76,6 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
                 onTap: () {
-
                   Navigator.pop(context);
                 }),
             LoginLogout(),
@@ -91,10 +88,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.deepOrange,
         elevation: 0.0,
         actions: <Widget>[
-          FlatButton.icon(
+          IconButton(
             icon: Icon(Icons.search),
-            label: Text(''),
-            onPressed: () => print("search press"),
+            onPressed: () {
+              showSearch(context: context, delegate: DataSearch());
+            },
           )
         ],
       ),
@@ -103,7 +101,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
 
 class LoginLogout extends StatelessWidget {
   final AuthService _auth = AuthService();

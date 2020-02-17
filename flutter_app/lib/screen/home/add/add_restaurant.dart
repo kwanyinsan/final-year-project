@@ -12,8 +12,8 @@ class AddRes extends StatefulWidget {
 class _AddResState extends State<AddRes> {
   final _formKey = GlobalKey<FormState>();
 
-  String _currentName;
-  String _currentAvatar;
+  String name;
+  int phone;
   int _currentPrice;
   String _currentType;
 
@@ -34,36 +34,41 @@ class _AddResState extends State<AddRes> {
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 20.0),
+            Text(' Restaurant Name', textAlign: TextAlign.left,),
             TextFormField(
               initialValue: '',
               decoration: textInputDecoration,
-              validator: (val) => val.isEmpty ? 'Please enter a name' : null,
-              onChanged: (val) => setState(() => _currentName = val),
+              validator: (val) => val.isEmpty ? 'Please enter a name.' : null,
+              onChanged: (val) => setState(() => name = val.trim()),
             ),
             SizedBox(height: 10.0),
+            Text(' Phone Number', textAlign: TextAlign.left,),
             TextFormField(
               initialValue: '',
               decoration: textInputDecoration,
-              validator: (val) => val.isEmpty ? 'Please enter a name' : null,
-              onChanged: (val) => setState(() => _currentAvatar = val),
+              validator: (val) => val.length < 8 ? 'Please enter a valid phone number.' : null,
+              onChanged: (val) => setState(() => phone = int.parse(val.trim())),
+              keyboardType: TextInputType.number,
             ),
             SizedBox(height: 10.0),
             RaisedButton(
-                color: Colors.pink[400],
+                color: Colors.deepOrange,
                 child: Text(
                   'Update',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                    await DatabaseService().newRes('name_addtest', 'type_addtest', 00000000, new GeoPoint(0, 0), 0, 0, 'https://i.imgur.com/gTp3dlW.png');
+                    await DatabaseService().newRes(name, 'type_addtest', phone, new GeoPoint(0, 0), 0, 0, 'https://i.imgur.com/gTp3dlW.png');
                     Navigator.pop(context);
+                    //TODO: alert successfully
                   }
                 }
                 ),
                   ],
                 ),
               ),
+      backgroundColor: Colors.deepOrange[100],
     );
         }
 }
