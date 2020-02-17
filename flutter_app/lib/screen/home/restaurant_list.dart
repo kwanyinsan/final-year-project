@@ -76,7 +76,7 @@ class ResTile extends StatelessWidget {
                   '\nFood Type: ${res.type}'
                   '\nPhone: ${res.phone}'
                   '\nPrice: ${res.price}'
-                  '\nLocation: Lat:${res.location.latitude}, Long:${res.location.longitude}'
+                  '\nLocation: '
                   '\nRestaurant ID: ${res.restaurant_id}'),
             ],
           ),

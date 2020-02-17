@@ -5,6 +5,7 @@ import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:flutter_app/services/search.dart';
 
 class DataSearch extends SearchDelegate<String> {
 
@@ -19,7 +20,7 @@ class DataSearch extends SearchDelegate<String> {
       primaryColor: Colors.deepOrange,
       primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
       primaryColorBrightness: Brightness.light,
-      primaryTextTheme: theme.textTheme,
+      primaryTextTheme: Typography().white,
       inputDecorationTheme: InputDecorationTheme(hintStyle: TextStyle(color: Colors.white)),
     );
   }
@@ -56,7 +57,9 @@ class DataSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
 
     if (query.isEmpty) {
-      return Text('Recent Search');
+      return Center(
+        child: Text('No Result Found.'),
+      );
     }
 
     return StreamBuilder(
@@ -65,13 +68,21 @@ class DataSearch extends SearchDelegate<String> {
         if (snapshot.hasData) {
           List<Restaurant> res = snapshot.data;
           List<Restaurant> results = res.where((a) => a.name.contains(query)).toList();
-          return ListView.builder(
+          if (results.length == 0) {
+            return Center(
+              child: Text('No Result Found.'),
+            );
+          }
+          return ListView.separated(
             itemCount: results.length,
             itemBuilder: (context, index) {
               return ListTile(
                 title: ResultTile(res: results[index]),
                 // children: results.map<Widget>((a) => Text(a.data['title'].toString())).toList()
               );
+            },
+            separatorBuilder: (context, index) {
+              return Divider(thickness: 2);
             },
           );
         } else {
@@ -82,36 +93,45 @@ class DataSearch extends SearchDelegate<String> {
   }
 }
 
+class ResultTile extends StatefulWidget {
 
-class ResultTile extends StatelessWidget {
   final Restaurant res;
   ResultTile({this.res});
 
   @override
+  _ResultTileState createState() => _ResultTileState();
+}
+
+class _ResultTileState extends State<ResultTile> {
+  String _location = '';
+
+  @override
+  void initState() {
+    widget.res.getAddress().then(updateLocation);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-
-
     return ListTile(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ResPage(res: res)),
+          MaterialPageRoute(builder: (context) => ResPage(res: widget.res)),
         );
       },
       leading: CircleAvatar(
         backgroundColor: Colors.deepOrange[100],
-        backgroundImage: NetworkImage(res.image),
+        backgroundImage: NetworkImage(widget.res.image),
       ),
-      title: Text(res.name),
-      subtitle: Text(res.location.toString())
+      title: Text(widget.res.name),
+      subtitle: Text(_location),
     );
   }
 
-  getAddress() async {
-    final coordinates = new Coordinates(1.10, 45.50);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses.first;
-    print("${first.featureName} : ${first.addressLine}");
-    return '${first.featureName}';
+  void updateLocation(String location) {
+    setState(() {
+      this._location = location;
+    });
   }
 }
