@@ -113,10 +113,6 @@ class LoginLogout extends StatelessWidget {
           title: Text('Logout'),
           onTap: () async {
             Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
             _auth.signOut();
           });
     } else
