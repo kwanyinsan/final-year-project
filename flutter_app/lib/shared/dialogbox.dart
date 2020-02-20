@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 
-showAlertDialog(BuildContext context, arg1) {
+import '../screen/authenticate/authenticate.dart';
+
+showAlertDialog(BuildContext context, textTitle, textInfo, button, callback) {
 
   // set up the buttons
   Widget remindButton = FlatButton(
-    child: Text('ok'),
+    child: Text(button),
     onPressed:  () {
+      Navigator.of(context).pop();
+      if (callback == 'none') {
+      }
+      else if (callback == 'auth') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Authenticate()),
+        );
+      }
     },
   );
   Widget cancelButton = FlatButton(
@@ -19,8 +30,8 @@ showAlertDialog(BuildContext context, arg1) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("hi bro"),
-    content: Text("you have not sign in yet."),
+    title: Text(textTitle),
+    content: Text(textInfo),
     actions: [
       remindButton,
     ],

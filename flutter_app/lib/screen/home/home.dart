@@ -63,13 +63,11 @@ class _HomeState extends State<Home> {
                       appBarTitle = 'Profile';
                     });
                   } else {
-                    // TODO: add alert
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Authenticate()),
-                    );
-                    showAlertDialog(context, '');
-                    print('error: user have not signed in');
+                    showAlertDialog(context,
+                        "Not Logged In",
+                        "Please log in to see your profile.",
+                        'OK',
+                        "auth");
                   }
                 }),
             ListTile(
