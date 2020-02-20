@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -133,8 +134,13 @@ class _ImageCaptureState extends State<ImageCapture> {
                   startUpload(_image);
                 }
                 if (_image == null) {
-                  //TODO: notifi need image
+                  //TODO: notifi need image (updated by GARY)
                   print('no image found!');
+                  showAlertDialog(context,
+                      "No Image Found",
+                      "Please upload a image.",
+                      'OK',
+                      "none");
                 }
               },
               heroTag: UniqueKey(),

@@ -5,6 +5,7 @@ import 'package:flutter_app/shared/constants.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tags/tag.dart';
@@ -204,8 +205,12 @@ class _AddResState extends State<AddRes> {
                           startUpload(_image);
                         }
                         if (_image == null) {
-                          //TODO: notifi need image
-                          print('no image found!');
+                          //TODO: notifi need image (updated by GARY)
+                          showAlertDialog(context,
+                              "No Image Uploaded",
+                              "Please upload a image.",
+                              'OK',
+                              "none");
                         }
                       },
                       heroTag: UniqueKey(),
@@ -255,17 +260,30 @@ class _AddResState extends State<AddRes> {
                     List<String> foodType = _getAllItem();
                     String stringFoodType = foodType.join(',');
                     if (stringFoodType == '') {
-                      //TODO: notifi button
-                      print('food type is empty');
+                      //TODO: notifi button (updated by GARY)
+                      showAlertDialog(context,
+                          "No Food Type",
+                          "Please input a food type.",
+                          'OK',
+                          "none");
                     } else
                     if (!_uploadTask.isComplete) {
-                      //TODO: notifi
-                      print('no image');
+                      //TODO: notifi (updated by GARY)
+                      showAlertDialog(context,
+                          "No Image",
+                          "Please upload a image.",
+                          'OK',
+                          "none");
                     } else
                     if(_formKey.currentState.validate()){
                       await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(0, 0), 0, 0, imageUrl);
                       Navigator.pop(context);
-                      //TODO: alert successfully
+                      //TODO: alert successfully (updated by GARY)
+                      showAlertDialog(context,
+                          " ",
+                          "Update successfully.",
+                          'OK',
+                          "none");
                     }
                   }
                   ),
