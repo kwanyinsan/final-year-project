@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/screen/authenticate/authenticate.dart';
 import 'package:flutter_app/screen/home/add/add_button.dart';
-import 'package:flutter_app/screen/profile/profile.dart';
 import 'package:flutter_app/screen/home/restaurant_list.dart';
+import 'package:flutter_app/screen/home/search.dart';
+import 'package:flutter_app/screen/profile/profile.dart';
+import 'package:flutter_app/screen/reviews/reviews.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_app/screen/reviews/reviews.dart';
-import 'package:flutter_app/screen/home/search.dart';
 
 class Home extends StatefulWidget {
   @override

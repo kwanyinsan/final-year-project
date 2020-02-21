@@ -1,5 +1,6 @@
-import 'package:geocoder/geocoder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geocoder/geocoder.dart';
+
 
 class SearchService {
   Future<String> getAddress(GeoPoint geoPoint) async {
@@ -8,4 +9,5 @@ class SearchService {
     var first = addresses.first;
     return "${first.addressLine}";
   }
+
 }

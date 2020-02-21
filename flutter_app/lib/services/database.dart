@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class DatabaseService {
@@ -43,9 +43,9 @@ class DatabaseService {
         type: doc.data['type'] ?? '',
         like: doc.data['like'] ?? 0,
         dislike: doc.data['dislike'] ?? 0,
-        location: doc.data['location'] ?? new GeoPoint(0, 0),
         price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
+        location: doc.data['location'] ?? new GeoPoint(0, 0),
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
     }).toList();
@@ -70,9 +70,9 @@ class DatabaseService {
       type: snapshot.data['type'] ?? '',
       like: snapshot.data['like'] ?? 0,
       dislike: snapshot.data['dislike'] ?? 0,
-      location: snapshot.data['location'] ?? new GeoPoint(0, 0),
       price: snapshot.data['price'] ?? 0,
       image: snapshot.data['image'] ?? '',
+      location: snapshot.data['location'] ?? new GeoPoint(0, 0),
     );
   }
 

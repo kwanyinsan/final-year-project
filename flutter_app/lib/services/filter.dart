@@ -1,5 +1,5 @@
-import 'package:flutter_app/models/restaurant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/models/restaurant.dart';
 
 
 class FilterService {
@@ -32,7 +32,6 @@ class FilterService {
         type: doc.data['type'] ?? '',
         like: doc.data['like'] ?? 0,
         dislike: doc.data['dislike'] ?? 0,
-        location: doc.data['location'] ?? new GeoPoint(0, 0),
         price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),

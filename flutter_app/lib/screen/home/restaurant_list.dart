@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
+import 'package:flutter_app/screen/home/restaurant_page/google_map.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_tags/tag.dart';
+
 
 final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
 List<String> _getAllItem(){
@@ -216,6 +218,19 @@ class ResTile extends StatelessWidget {
                   '\nPrice: ${res.price}'
                   '\nLocation: '
                   '\nRestaurant ID: ${res.restaurant_id}'),
+              RaisedButton(
+                  child: Text('location',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: new Color(0xff622f74),
+                  onPressed:(){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>FireMap(res: res,)),
+                    );
+                  }
+              ),
             ],
           ),
         ),

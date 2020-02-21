@@ -1,14 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/constants.dart';
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
+import 'package:flutter_tags/tag.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_tags/tag.dart';
 
 class AddRes extends StatefulWidget {
 
