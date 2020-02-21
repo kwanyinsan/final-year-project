@@ -46,12 +46,8 @@ class _AddResState extends State<AddRes> {
     'Indian',
     'French',
     'Thai',
-    'Spanish',
-    'Vietnamese',
     'Korean',
     'Taiwanese',
-    'Middle Eastern',
-    'British',
   ];
 
   @override

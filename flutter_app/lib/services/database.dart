@@ -62,17 +62,33 @@ class DatabaseService {
     );
   }
 
+  Restaurant _resDataFromSnapshot(DocumentSnapshot snapshot) {
+    return Restaurant(
+      restaurant_id: snapshot.documentID ?? '',
+      name: snapshot.data['name'] ?? '',
+      phone: snapshot.data['phone'] ?? 0,
+      type: snapshot.data['type'] ?? '',
+      like: snapshot.data['like'] ?? 0,
+      dislike: snapshot.data['dislike'] ?? 0,
+      location: snapshot.data['location'] ?? new GeoPoint(0, 0),
+      price: snapshot.data['price'] ?? 0,
+      image: snapshot.data['image'] ?? '',
+    );
+  }
+
 
   Stream<List<Restaurant>> get res {
     return resCollection.snapshots()
         .map(_resListFromSnapshot);
   }
-
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots()
         .map(_userDataFromSnapshot);
   }
 
-
+  Stream<Restaurant> get resData {
+    return resCollection.document(uid).snapshots()
+        .map(_resDataFromSnapshot);
+  }
 
 }

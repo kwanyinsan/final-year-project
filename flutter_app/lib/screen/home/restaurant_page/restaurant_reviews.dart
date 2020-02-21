@@ -52,6 +52,7 @@ class ReviewTile extends StatelessWidget {
               child: Card(
                 margin: EdgeInsets.zero,
                 child: ListTile(
+                  //trailing: Icon(Icons.chevron_right),
                   leading: CircleAvatar(
                   radius: 30.0,
                   backgroundColor: Colors.deepOrange,
