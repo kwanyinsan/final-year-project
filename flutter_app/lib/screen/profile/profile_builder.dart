@@ -36,7 +36,7 @@ class ProfileBuilder extends StatelessWidget {
 
                 ),
                 SizedBox(width: 10,),
-                Text('Likes:',
+                Text('Likesjh:',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: 16.0,
