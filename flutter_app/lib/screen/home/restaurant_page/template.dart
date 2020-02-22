@@ -1,16 +1,20 @@
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/review.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/screen/home/restaurant_page/asset.dart';
+import 'package:flutter_app/screen/home/restaurant_page/network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/database.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/review.dart';
 import 'package:flutter_app/shared/loading.dart';
 
-class ReviewList extends StatelessWidget {
+class ProfileThreePage extends StatelessWidget {
 
   final Restaurant res;
-  ReviewList({this.res});
+  ProfileThreePage({this.res});
 
+  static final String path = "lib/src/pages/profile/profile3.dart";
+  final image = avatars[1];
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -21,7 +25,7 @@ class ReviewList extends StatelessWidget {
             SizedBox(
               height: 250,
               width: double.infinity,
-              child: Image.network(res.image, fit: BoxFit.cover,),
+              child: PNetworkImage(image, fit: BoxFit.cover,),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(16.0, 200.0, 16.0, 16.0),
@@ -44,7 +48,7 @@ class ReviewList extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text('${res.name}', style: Theme.of(context).textTheme.title,),
+                                  Text("Little Butterfly", style: Theme.of(context).textTheme.title,),
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
                                     title: Text("Product Designer"),
@@ -85,7 +89,7 @@ class ReviewList extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             image: DecorationImage(
-                                image: NetworkImage(res.image),
+                                image: CachedNetworkImageProvider(image),
                                 fit: BoxFit.cover
                             )
                         ),
@@ -132,25 +136,25 @@ class ReviewList extends StatelessWidget {
                       ],
                     ),
                   ),
-                  StreamBuilder(
-                    stream: ReviewService(restaurant_id: res.restaurant_id).review,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        List<Review> review = snapshot.data;
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: review.length,
-                          itemBuilder: (context, index) {
-                            return ReviewTile(review: review[index]);
-                          },
-                        );
-                        //TODO: add if no reviews, then say no reviews
-                      } else {
-                        return Loading();
-                      }
-                    },
-                  ),
+        StreamBuilder(
+          stream: ReviewService(restaurant_id: res.restaurant_id).review,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Review> review = snapshot.data;
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: review.length,
+                itemBuilder: (context, index) {
+                  return ReviewTile(review: review[index]);
+                },
+              );
+              //TODO: add if no reviews, then say no reviews
+            } else {
+              return Loading();
+            }
+          },
+        ),
                 ],
               ),
             ),
@@ -161,46 +165,6 @@ class ReviewList extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-
-class ReviewTile extends StatelessWidget {
-
-  final Restaurant res;
-  final Review review;
-  ReviewTile({ this.res, this.review });
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: DatabaseService(uid: review.user_id).userData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            UserData userData = snapshot.data;
-            return Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 3),
-              child: Card(
-                margin: EdgeInsets.zero,
-                child: ListTile(
-                  //trailing: Icon(Icons.chevron_right),
-                  leading: CircleAvatar(
-                  radius: 30.0,
-                  backgroundColor: Colors.deepOrange,
-                  backgroundImage: NetworkImage('${userData.avatar}'),
-                ),
-                  title: Text('${userData.name}'),
-                  subtitle: Text(
-                      'Like: ${review.like}, Dislike: ${review.dislike}'
-                          '\n${review.content}'
-                  ),
-                ),
-              ),
-            );
-          } else
-            return Loading();
-        }
     );
   }
 }

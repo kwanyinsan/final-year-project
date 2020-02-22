@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
-import 'package:flutter_app/screen/home/restaurant_page/google_map.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
+import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_tags/tag.dart';
 
@@ -65,18 +64,21 @@ class _ResListState extends State<ResList> {
         if (filterKeyword.isEmpty) {
           resFiltered = res;
         }
-        return Column(
-          children: <Widget>[
-            Filter(this.callback),
-            Expanded(
-              child: ListView.builder(
-                itemCount: resFiltered.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ResTile(res: resFiltered[index]);
-                },
-              ),
-            ),
-          ],
+        return SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+                Filter(this.callback),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: resFiltered.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ResTile(res: resFiltered[index]);
+                  },
+                ),
+            ],
+          ),
         );
       },
     );
@@ -205,7 +207,7 @@ class _ResTileState extends State<ResTile> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ResPage(res: widget.res)),
+              MaterialPageRoute(builder: (context) => ReviewList(res: widget.res)),
             );
           },
           child: Column(
