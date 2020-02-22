@@ -1,11 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
-import 'package:flutter_app/shared/loading.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geocoder/geocoder.dart';
 import 'package:flutter_app/services/search.dart';
+import 'package:flutter_app/shared/loading.dart';
 
 class DataSearch extends SearchDelegate<String> {
 

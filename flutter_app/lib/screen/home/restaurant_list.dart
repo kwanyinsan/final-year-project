@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
+import 'package:flutter_app/screen/home/restaurant_page/google_map.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_tags/tag.dart';
+
 
 final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
 List<String> _getAllItem(){
@@ -169,9 +171,26 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
   }
 }
 
-class ResTile extends StatelessWidget {
+class ResTile extends StatefulWidget {
   final Restaurant res;
   ResTile({this.res});
+
+  @override
+  _ResTileState createState() => _ResTileState();
+}
+
+class _ResTileState extends State<ResTile> {
+  @override
+  void initState() {
+    widget.res.getAddress().then(updateLocation);
+    super.initState();
+  }
+  String _location = 'Loading...';
+  void updateLocation(String location) async {
+    setState(() {
+      this._location = location.split(',')[1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +203,7 @@ class ResTile extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ResPage(res: res)),
+              MaterialPageRoute(builder: (context) => ResPage(res: widget.res)),
             );
           },
           child: Column(
@@ -193,7 +212,7 @@ class ResTile extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage('${res.image}'),
+                    image: NetworkImage('${widget.res.image}'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -205,17 +224,30 @@ class ResTile extends StatelessWidget {
                     width: 20,
                   ),
                   Text(
-                    '${res.name}',
+                    '${widget.res.name}',
                     style: Theme.of(context).textTheme.headline,
                   ),
                 ],
               ),
-              Text('Like: ${res.like}, Dislike: ${res.dislike}'
-                  '\nFood Type: ${res.type}'
-                  '\nPhone: ${res.phone}'
-                  '\nPrice: ${res.price}'
-                  '\nLocation: '
-                  '\nRestaurant ID: ${res.restaurant_id}'),
+              Text('Like: ${widget.res.like}, Dislike: ${widget.res.dislike}'
+                  '\nFood Type: ${widget.res.type}'
+                  '\nPhone: ${widget.res.phone}'
+                  '\nPrice: ${widget.res.price}'
+                  '\nLocation: ' + _location +
+                  '\nRestaurant ID: ${widget.res.restaurant_id}'),
+              RaisedButton(
+                  child: Text('location',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: new Color(0xff622f74),
+                  onPressed:(){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>FireMap(res: widget.res,)),
+                    );
+                  }
+              ),
             ],
           ),
         ),

@@ -1,14 +1,16 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_app/screen/home/add/add_location.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/constants.dart';
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
+import 'package:flutter_tags/tag.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_tags/tag.dart';
 
 class AddRes extends StatefulWidget {
 
@@ -103,6 +105,18 @@ class _AddResState extends State<AddRes> {
         uploadState = 'Done';
       });
     }
+  }
+
+  LatLng location;
+
+  _navigateAndDisplaySelection(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MarkerMap()),
+    );
+    setState(() {
+      location = result;
+    });
   }
 
   @override
@@ -243,7 +257,20 @@ class _AddResState extends State<AddRes> {
                 );
               },
             ),
-            SizedBox(height: 10.0),
+              SizedBox(height: 10.0),
+              Text(location.toString()),
+              RaisedButton(
+                  child: Text('Upload Location',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: Colors.deepOrange,
+                  onPressed: () {
+                    _navigateAndDisplaySelection(context);
+                  }
+              ),
+              SizedBox(height: 10.0),
               RaisedButton(
                   color: Colors.deepOrange,
                   child: Center(
@@ -255,31 +282,35 @@ class _AddResState extends State<AddRes> {
                   onPressed: () async {
                     List<String> foodType = _getAllItem();
                     String stringFoodType = foodType.join(',');
-                    if (stringFoodType == '') {
-                      //TODO: notifi button (updated by GARY)
+                    if (!isUploading) {
                       showAlertDialog(context,
-                          "No Food Type",
-                          "Please input a food type.",
+                          "No Image",
+                          "Your image was not uploaded.",
                           'OK',
                           "none");
                     } else
-                    if (!_uploadTask.isComplete) {
-                      //TODO: notifi (updated by GARY)
+                    if (stringFoodType == '') {
                       showAlertDialog(context,
-                          "No Image",
-                          "Please upload a image.",
+                          "Invalid Food Type",
+                          "Please choose atleast one food type.",
+                          'OK',
+                          "none");
+                    } else
+                    if (location == null) {
+                      showAlertDialog(context,
+                          "No Location",
+                          "Please upload the location of the restaurant",
                           'OK',
                           "none");
                     } else
                     if(_formKey.currentState.validate()){
-                      await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(0, 0), 0, 0, imageUrl);
-                      Navigator.pop(context);
-                      //TODO: alert successfully (updated by GARY)
+                      await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), 0, 0, imageUrl);
                       showAlertDialog(context,
-                          " ",
-                          "Update successfully.",
+                          "Thanks!",
+                          "Added $name Successfully.",
                           'OK',
                           "none");
+                      Navigator.pop(context);
                     }
                   }
                   ),
