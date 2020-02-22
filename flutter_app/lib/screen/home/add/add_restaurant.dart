@@ -172,7 +172,7 @@ class _AddResState extends State<AddRes> {
                     color: Colors.white,
                   ),
                   child: _image == null
-                      ? Center(child:Text('Upload a image.'),)
+                      ? Center(child:Text('Upload an image.\n\n1. Select or Take Photo.\n2. Press Upload.', textAlign: TextAlign.center,),)
                       : Image.file(
                     _image,
                     height: 200,
@@ -247,6 +247,7 @@ class _AddResState extends State<AddRes> {
                   active: false,
                   color: Colors.black12,
                   activeColor: Colors.deepOrange,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                   title: item,
                   customData: item,
                   textStyle: TextStyle(fontSize: 14),
@@ -257,20 +258,33 @@ class _AddResState extends State<AddRes> {
                 );
               },
             ),
-              SizedBox(height: 10.0),
-              Text(location.toString()),
-              RaisedButton(
-                  child: Text('Upload Location',
+              SizedBox(height: 30.0),
+              Text('Location'),
+              Text(location.latitude.toString() +'/'+ location.longitude.toString()),
+              Container(
+                width: 50,
+                height: 100,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(target: location ?? LatLng(22.28552, 114.15769), zoom: 15,),
+                  onTap: (point) {
+                    _navigateAndDisplaySelection(context);
+                  },
+                ),
+              ),
+              RaisedButton.icon(
+                  label: Text('Select Location',
                     style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
+                  icon: Icon(Icons.location_on, color: Colors.white,),
                   color: Colors.deepOrange,
+
                   onPressed: () {
                     _navigateAndDisplaySelection(context);
                   }
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 50.0),
               RaisedButton(
                   color: Colors.deepOrange,
                   child: Center(
