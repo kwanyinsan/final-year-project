@@ -1,5 +1,5 @@
-import 'package:flutter_app/models/review.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/models/review.dart';
 
 class ReviewService {
 
@@ -31,4 +31,6 @@ class ReviewService {
     return reviewCollection.snapshots()
         .map(_reviewFromSnapshot);
   }
+
+
 }

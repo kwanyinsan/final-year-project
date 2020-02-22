@@ -35,8 +35,8 @@ class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.deepOrange,
       onPressed: () {},
+      backgroundColor: Colors.deepOrange,
       child: PopupMenuButton<PageEnum>(
         onSelected: _onSelect,
         child: Icon(Icons.add),

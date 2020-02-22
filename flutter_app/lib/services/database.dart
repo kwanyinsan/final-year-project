@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class DatabaseService {
 
@@ -10,7 +11,6 @@ class DatabaseService {
   // collection reference
   final CollectionReference userCollection = Firestore.instance.collection('userdata');
   final CollectionReference resCollection = Firestore.instance.collection('restaurant');
-  final CollectionReference reviewCollection = Firestore.instance.collection('review');
 
   Future<void> newRes(String name, String type, int phone, GeoPoint location, int like, int dislike, String image) async {
     return await resCollection.document().setData({
@@ -43,9 +43,9 @@ class DatabaseService {
         type: doc.data['type'] ?? '',
         like: doc.data['like'] ?? 0,
         dislike: doc.data['dislike'] ?? 0,
-        location: doc.data['location'] ?? new GeoPoint(0, 0),
         price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
+        location: doc.data['location'] ?? new GeoPoint(0, 0),
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
     }).toList();
@@ -62,15 +62,33 @@ class DatabaseService {
     );
   }
 
+  Restaurant _resDataFromSnapshot(DocumentSnapshot snapshot) {
+    return Restaurant(
+      restaurant_id: snapshot.documentID ?? '',
+      name: snapshot.data['name'] ?? '',
+      phone: snapshot.data['phone'] ?? 0,
+      type: snapshot.data['type'] ?? '',
+      like: snapshot.data['like'] ?? 0,
+      dislike: snapshot.data['dislike'] ?? 0,
+      price: snapshot.data['price'] ?? 0,
+      image: snapshot.data['image'] ?? '',
+      location: snapshot.data['location'] ?? new GeoPoint(0, 0),
+    );
+  }
+
 
   Stream<List<Restaurant>> get res {
     return resCollection.snapshots()
         .map(_resListFromSnapshot);
   }
-
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots()
         .map(_userDataFromSnapshot);
+  }
+
+  Stream<Restaurant> get resData {
+    return resCollection.document(uid).snapshots()
+        .map(_resDataFromSnapshot);
   }
 
 }

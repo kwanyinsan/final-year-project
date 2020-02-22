@@ -41,5 +41,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+    <string>Used to capture restaurant image.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Used to pick restaurant image.</string>
 </dict>
 </plist>

@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/shared/constants.dart';
 import 'package:flutter_app/shared/loading.dart';
-import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
 
@@ -95,6 +95,7 @@ class _RegisterState extends State<Register> {
                       dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school, 'https://i.imgur.com/GcqJ5NM.png');
                       if (result != null) {
                         //TODO: scuessfully registered
+
                         Navigator.pop(context);
                       } else
                       if(result == null) {

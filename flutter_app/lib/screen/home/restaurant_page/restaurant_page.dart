@@ -11,10 +11,14 @@ class ResPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(res.name+"'s Review"),
+        title: Text(res.name),
         backgroundColor: Colors.deepOrange,
       ),
-      body: ReviewList(res: res),
+      body: Column(
+        children: <Widget>[
+          ReviewList(res: res)
+        ],
+      ),
       backgroundColor: Colors.deepOrange[100],
     );
   }
