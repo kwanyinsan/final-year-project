@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/review.dart';
 import 'package:flutter_app/shared/loading.dart';
+import 'package:flutter_app/shared/star_rating.dart';
 
 class ReviewList extends StatelessWidget {
 
@@ -179,23 +180,57 @@ class ReviewTile extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-            return Padding(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 3),
-              child: Card(
-                margin: EdgeInsets.zero,
-                child: ListTile(
-                  //trailing: Icon(Icons.chevron_right),
-                  leading: CircleAvatar(
-                  radius: 30.0,
-                  backgroundColor: Colors.deepOrange,
-                  backgroundImage: NetworkImage('${userData.avatar}'),
-                ),
-                  title: Text('${userData.name}'),
-                  subtitle: Text(
-                      'Like: ${review.like}, Dislike: ${review.dislike}'
-                          '\n${review.content}'
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Card(
+                    elevation: 0.0,
+                    margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                    child: ListTile(
+                      //trailing: Icon(Icons.chevron_right),
+                      leading: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.deepOrange,
+                      backgroundImage: NetworkImage('${userData.avatar}'),
+                    ),
+                      title: Text('${userData.name}'),
+                      subtitle: Text(
+                          'Followers: 0'
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(25, 0, 20, 5),
+                    child: StarRating(
+                      rating: review.rating,
+                      size: 20,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(25, 0, 20, 20),
+                    child: Text(review.content,
+                      style: TextStyle(fontSize: 18),),
+                  ),
+                  Image.network(review.image),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(25, 20, 20, 20),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.thumb_up, color: Colors.blueAccent,),
+                        Text(' ${review.like}'),
+                        SizedBox(width: 20),
+                        Icon(Icons.thumb_down, color: Colors.redAccent,),
+                        Text(' ${review.dislike}'),
+                      ],
+                    ),
+                  ),
+                  Divider(thickness: 1,)
+                ],
               ),
             );
           } else

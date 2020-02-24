@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screen/home/add/add_restaurant.dart';
 import 'package:flutter_app/screen/home/add/add_review.dart';
+import 'package:flutter_app/screen/home/add/add_review_select_res.dart';
 import 'package:flutter_app/screen/home/restaurant_list.dart';
 
 enum PageEnum {
@@ -22,8 +23,7 @@ class _AddButtonState extends State<AddButton> {
             CupertinoPageRoute(builder: (BuildContext context) => AddRes()));
         break;
       case PageEnum.secondPage:
-        Navigator.of(context).push(CupertinoPageRoute(
-            builder: (BuildContext context) => AddReview()));
+          showSearch(context: context, delegate: SelectRes());
         break;
       default:
         Navigator.of(context).push(CupertinoPageRoute(

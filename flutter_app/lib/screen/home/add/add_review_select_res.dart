@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
+import 'package:flutter_app/screen/home/add/add_review.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/search.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_app/shared/loading.dart';
 class SelectRes extends SearchDelegate<String> {
 
   @override
-  String get searchFieldLabel => "Search";
+  String get searchFieldLabel => "Select a restaurant.";
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -55,11 +56,6 @@ class SelectRes extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
 
-    if (query.isEmpty) {
-      return Center(
-        child: Text('No Result Found.'),
-      );
-    }
 
     return StreamBuilder(
       stream: DatabaseService().res,
@@ -67,11 +63,6 @@ class SelectRes extends SearchDelegate<String> {
         if (snapshot.hasData) {
           List<Restaurant> res = snapshot.data;
           List<Restaurant> results = res.where((a) => a.name.contains(query)).toList();
-          if (results.length == 0) {
-            return Center(
-              child: Text('No Result Found.'),
-            );
-          }
           return ListView.separated(
             itemCount: results.length,
             itemBuilder: (context, index) {
@@ -116,7 +107,7 @@ class _ResultTileState extends State<ResultTile> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ResPage(res: widget.res)),
+          MaterialPageRoute(builder: (context) => AddReview(res: widget.res)),
         );
       },
       leading: CircleAvatar(
@@ -130,7 +121,7 @@ class _ResultTileState extends State<ResultTile> {
 
   void updateLocation(String location) {
     setState(() {
-      this._location = location.split(',')[1];
+      this._location = location.split(',')[1].trim();
     });
   }
 }

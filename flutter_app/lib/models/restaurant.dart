@@ -13,8 +13,9 @@ class Restaurant {
     final int price;
     final GeoPoint location;
     final String address;
+    final String website;
 
-    Restaurant({ this.restaurant_id, this.name, this.type, this.phone, this.like, this.dislike, this.image, this.price, this.address, this.location});
+    Restaurant({ this.restaurant_id, this.name, this.type, this.phone, this.like, this.dislike, this.image, this.price, this.address, this.location, this.website});
 
     Future<String> getAddress() async {
       final coordinates = new Coordinates(location.latitude, location.longitude);

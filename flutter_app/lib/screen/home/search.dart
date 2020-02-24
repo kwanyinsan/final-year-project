@@ -130,7 +130,7 @@ class _ResultTileState extends State<ResultTile> {
 
   void updateLocation(String location) {
     setState(() {
-      this._location = location.split(',')[1];
+      this._location = location.split(',')[1].trim();
     });
   }
 }

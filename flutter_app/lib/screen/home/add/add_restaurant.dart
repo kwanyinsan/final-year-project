@@ -24,6 +24,7 @@ class _AddResState extends State<AddRes> {
   String name;
   int phone;
   String imageUrl = 'https://i.imgur.com/gTp3dlW.png';
+  String website = '';
 
   // Image Captures
   File _image;
@@ -118,10 +119,9 @@ class _AddResState extends State<AddRes> {
       location = result;
     });
   }
-
   @override
   Widget build(BuildContext context) {
-
+    bool isClicked = false;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -150,6 +150,13 @@ class _AddResState extends State<AddRes> {
                 validator: (val) => val.length < 8 ? 'Please enter a valid phone number.' : null,
                 onChanged: (val) => setState(() => phone = int.parse(val.trim())),
                 keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 10.0),
+              Text(' Website (Optional)', textAlign: TextAlign.left,),
+              TextFormField(
+                initialValue: '',
+                decoration: textInputDecoration.copyWith(hintText: 'website'),
+                onChanged: (val) => setState(() => website = val.trim()),
               ),
               SizedBox(height: 10.0),
             Column(
@@ -215,7 +222,6 @@ class _AddResState extends State<AddRes> {
                           startUpload(_image);
                         }
                         if (_image == null) {
-                          //TODO: notifi need image (updated by GARY)
                           showAlertDialog(context,
                               "No Image Uploaded",
                               "Please upload a image.",
@@ -260,12 +266,11 @@ class _AddResState extends State<AddRes> {
             ),
               SizedBox(height: 30.0),
               Text('Location'),
-              Text(location.latitude.toString() +'/'+ location.longitude.toString()),
               Container(
                 width: 50,
                 height: 100,
                 child: GoogleMap(
-                  initialCameraPosition: CameraPosition(target: location ?? LatLng(22.28552, 114.15769), zoom: 15,),
+                  initialCameraPosition: CameraPosition(target: location ?? LatLng(22.28552, 114.15769), zoom: 10,),
                   onTap: (point) {
                     _navigateAndDisplaySelection(context);
                   },
@@ -317,15 +322,17 @@ class _AddResState extends State<AddRes> {
                           'OK',
                           "none");
                     } else
-                    if(_formKey.currentState.validate()){
-                      await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), 0, 0, imageUrl);
-                      showAlertDialog(context,
-                          "Thanks!",
-                          "Added $name Successfully.",
-                          'OK',
-                          "none");
-                      Navigator.pop(context);
-                    }
+                      if (!isClicked) {
+                        if(_formKey.currentState.validate()){
+                          await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), 0, 0, imageUrl, website);
+                          showAlertDialog(context,
+                              "Thanks!",
+                              "Added $name Successfully.",
+                              'OK',
+                              "none");
+                        }
+                        isClicked = false;
+                      }
                   }
                   ),
             ],
