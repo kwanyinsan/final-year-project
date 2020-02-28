@@ -12,7 +12,7 @@ class DatabaseService {
   final CollectionReference userCollection = Firestore.instance.collection('userdata');
   final CollectionReference resCollection = Firestore.instance.collection('restaurant');
 
-  Future<void> newRes(String name, String type, int phone, GeoPoint location, int like, int dislike, String image) async {
+  Future<void> newRes(String name, String type, int phone, GeoPoint location, int like, int dislike, String image, String website) async {
     return await resCollection.document().setData({
       'name': name,
       'type': type,
@@ -21,6 +21,7 @@ class DatabaseService {
       'like': like,
       'dislike': dislike,
       'image': image,
+      'website' : website,
     });
   }
 
@@ -46,6 +47,7 @@ class DatabaseService {
         price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
         location: doc.data['location'] ?? new GeoPoint(0, 0),
+        website: doc.data['website'] ?? '',
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
     }).toList();
@@ -73,6 +75,7 @@ class DatabaseService {
       price: snapshot.data['price'] ?? 0,
       image: snapshot.data['image'] ?? '',
       location: snapshot.data['location'] ?? new GeoPoint(0, 0),
+      website: snapshot.data['website'] ?? '',
     );
   }
 

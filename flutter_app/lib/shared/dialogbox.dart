@@ -8,8 +8,10 @@ showAlertDialog(BuildContext context, textTitle, textInfo, button, callback) {
   Widget remindButton = FlatButton(
     child: Text(button),
     onPressed:  () {
-      Navigator.of(context).pop();
       if (callback == 'none') {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
       }
       else if (callback == 'auth') {
         Navigator.push(
@@ -18,14 +20,6 @@ showAlertDialog(BuildContext context, textTitle, textInfo, button, callback) {
         );
       }
     },
-  );
-  Widget cancelButton = FlatButton(
-    child: Text("Cancel"),
-    onPressed:  () {},
-  );
-  Widget launchButton = FlatButton(
-    child: Text("Launch missile"),
-    onPressed:  () {},
   );
 
   // set up the AlertDialog
@@ -39,9 +33,13 @@ showAlertDialog(BuildContext context, textTitle, textInfo, button, callback) {
 
   // show the dialog
   showDialog(
+    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return alert;
+      return WillPopScope(
+          child: alert,
+        onWillPop: () async => false,
+      );
     },
   );
 }

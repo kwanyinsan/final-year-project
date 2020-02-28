@@ -1,13 +1,14 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/screen/home/add/add_location.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/shared/constants.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:flutter_tags/tag.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,6 +24,7 @@ class _AddResState extends State<AddRes> {
   String name;
   int phone;
   String imageUrl = 'https://i.imgur.com/gTp3dlW.png';
+  String website = '';
 
   // Image Captures
   File _image;
@@ -106,9 +108,20 @@ class _AddResState extends State<AddRes> {
     }
   }
 
+  LatLng location;
+
+  _navigateAndDisplaySelection(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MarkerMap()),
+    );
+    setState(() {
+      location = result;
+    });
+  }
   @override
   Widget build(BuildContext context) {
-
+    bool isClicked = false;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -139,6 +152,13 @@ class _AddResState extends State<AddRes> {
                 keyboardType: TextInputType.number,
               ),
               SizedBox(height: 10.0),
+              Text(' Website (Optional)', textAlign: TextAlign.left,),
+              TextFormField(
+                initialValue: '',
+                decoration: textInputDecoration.copyWith(hintText: 'website'),
+                onChanged: (val) => setState(() => website = val.trim()),
+              ),
+              SizedBox(height: 10.0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -159,7 +179,7 @@ class _AddResState extends State<AddRes> {
                     color: Colors.white,
                   ),
                   child: _image == null
-                      ? Center(child:Text('Upload a image.'),)
+                      ? Center(child:Text('Upload an image.\n\n1. Select or Take Photo.\n2. Press Upload.', textAlign: TextAlign.center,),)
                       : Image.file(
                     _image,
                     height: 200,
@@ -202,7 +222,6 @@ class _AddResState extends State<AddRes> {
                           startUpload(_image);
                         }
                         if (_image == null) {
-                          //TODO: notifi need image (updated by GARY)
                           showAlertDialog(context,
                               "No Image Uploaded",
                               "Please upload a image.",
@@ -234,6 +253,7 @@ class _AddResState extends State<AddRes> {
                   active: false,
                   color: Colors.black12,
                   activeColor: Colors.deepOrange,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                   title: item,
                   customData: item,
                   textStyle: TextStyle(fontSize: 14),
@@ -244,7 +264,32 @@ class _AddResState extends State<AddRes> {
                 );
               },
             ),
-            SizedBox(height: 10.0),
+              SizedBox(height: 30.0),
+              Text('Location'),
+              Container(
+                width: 50,
+                height: 100,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(target: location ?? LatLng(22.28552, 114.15769), zoom: 10,),
+                  onTap: (point) {
+                    _navigateAndDisplaySelection(context);
+                  },
+                ),
+              ),
+              RaisedButton.icon(
+                  label: Text('Select Location',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  icon: Icon(Icons.location_on, color: Colors.white,),
+                  color: Colors.deepOrange,
+
+                  onPressed: () {
+                    _navigateAndDisplaySelection(context);
+                  }
+              ),
+              SizedBox(height: 50.0),
               RaisedButton(
                   color: Colors.deepOrange,
                   child: Center(
@@ -256,32 +301,38 @@ class _AddResState extends State<AddRes> {
                   onPressed: () async {
                     List<String> foodType = _getAllItem();
                     String stringFoodType = foodType.join(',');
-                    if (stringFoodType == '') {
-                      //TODO: notifi button (updated by GARY)
-                      showAlertDialog(context,
-                          "No Food Type",
-                          "Please input a food type.",
-                          'OK',
-                          "none");
-                    } else
-                    if (!_uploadTask.isComplete) {
-                      //TODO: notifi (updated by GARY)
+                    if (!isUploading) {
                       showAlertDialog(context,
                           "No Image",
-                          "Please upload a image.",
+                          "Your image was not uploaded.",
                           'OK',
                           "none");
                     } else
-                    if(_formKey.currentState.validate()){
-                      await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(0, 0), 0, 0, imageUrl);
-                      Navigator.pop(context);
-                      //TODO: alert successfully (updated by GARY)
+                    if (stringFoodType == '') {
                       showAlertDialog(context,
-                          " ",
-                          "Update successfully.",
+                          "Invalid Food Type",
+                          "Please choose atleast one food type.",
                           'OK',
                           "none");
-                    }
+                    } else
+                    if (location == null) {
+                      showAlertDialog(context,
+                          "No Location",
+                          "Please upload the location of the restaurant",
+                          'OK',
+                          "none");
+                    } else
+                      if (!isClicked) {
+                        if(_formKey.currentState.validate()){
+                          await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), 0, 0, imageUrl, website);
+                          showAlertDialog(context,
+                              "Thanks!",
+                              "Added $name Successfully.",
+                              'OK',
+                              "none");
+                        }
+                        isClicked = false;
+                      }
                   }
                   ),
             ],

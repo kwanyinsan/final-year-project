@@ -106,7 +106,7 @@ class _ResultTileState extends State<ResultTile> {
 
   @override
   void initState() {
-    //widget.res.getAddress().then(updateLocation);
+    widget.res.getAddress().then(updateLocation);
     super.initState();
   }
 
@@ -130,7 +130,7 @@ class _ResultTileState extends State<ResultTile> {
 
   void updateLocation(String location) {
     setState(() {
-      this._location = location;
+      this._location = location.split(',')[1].trim();
     });
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
-import 'package:flutter_app/screen/home/restaurant_page/google_map.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
+import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_tags/tag.dart';
 
@@ -65,18 +64,21 @@ class _ResListState extends State<ResList> {
         if (filterKeyword.isEmpty) {
           resFiltered = res;
         }
-        return Column(
-          children: <Widget>[
-            Filter(this.callback),
-            Expanded(
-              child: ListView.builder(
-                itemCount: resFiltered.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ResTile(res: resFiltered[index]);
-                },
-              ),
-            ),
-          ],
+        return SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+                Filter(this.callback),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: resFiltered.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ResTile(res: resFiltered[index]);
+                  },
+                ),
+            ],
+          ),
         );
       },
     );
@@ -117,11 +119,11 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: (isExpand==true)?const EdgeInsets.all(4.0):const EdgeInsets.all(4.0),
+      padding: (isExpand==true)?const EdgeInsets.fromLTRB(2, 2, 2, 0):const EdgeInsets.fromLTRB(2, 2, 2, 0),
       child: Container(
         decoration:BoxDecoration(
             color: Colors.white,
-            borderRadius: (isExpand!=true)?BorderRadius.all(Radius.circular(8)):BorderRadius.all(Radius.circular(8)),
+            borderRadius: (isExpand!=true)?BorderRadius.all(Radius.circular(2)):BorderRadius.all(Radius.circular(2)),
             border: Border.all(color: Colors.pink)
         ),
         child: ExpansionTile(
@@ -130,6 +132,7 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
               width: double.infinity,
               child: Text((isExpand!=true)?'Food Type...':'Food Type',style: TextStyle(fontSize: (isExpand!=true)?18:18),),
           ),
+          leading: Icon(Icons.fastfood),
           trailing: (isExpand==true)?Icon(Icons.arrow_drop_up,size: 32,color: Colors.pink,):Icon(Icons.arrow_drop_down,size: 32,color: Colors.pink),
           onExpansionChanged: (value){
             setState(() {
@@ -153,9 +156,10 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
                   active: false,
                   color: Colors.black12,
                   activeColor: Colors.deepOrange,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                   title: item,
                   customData: item,
-                  textStyle: TextStyle(fontSize: 12),
+                  textStyle: TextStyle(fontSize: 14),
                   combine: ItemTagsCombine.withTextBefore,
                   icon: ItemTagsIcon(
                     icon: Icons.add_circle,
@@ -171,14 +175,31 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
   }
 }
 
-class ResTile extends StatelessWidget {
+class ResTile extends StatefulWidget {
   final Restaurant res;
   ResTile({this.res});
 
   @override
+  _ResTileState createState() => _ResTileState();
+}
+
+class _ResTileState extends State<ResTile> {
+  @override
+  void initState() {
+    widget.res.getAddress().then(updateLocation);
+    super.initState();
+  }
+  String _location = 'Loading...';
+  void updateLocation(String location) async {
+    setState(() {
+      this._location = location.split(',')[1];
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(5, 5, 5, 3),
+      padding: EdgeInsets.fromLTRB(4, 0, 4, 4),
       child: Material(
         color: Colors.white,
         child: InkWell(
@@ -186,7 +207,7 @@ class ResTile extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ResPage(res: res)),
+              MaterialPageRoute(builder: (context) => ReviewList(res: widget.res)),
             );
           },
           child: Column(
@@ -195,41 +216,67 @@ class ResTile extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage('${res.image}'),
+                    image: NetworkImage('${widget.res.image}'),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               Row(
                 children: <Widget>[
-                  Icon(Icons.restaurant_menu),
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Text(
-                    '${res.name}',
+                    '${widget.res.name}',
                     style: Theme.of(context).textTheme.headline,
                   ),
                 ],
               ),
-              Text('Like: ${res.like}, Dislike: ${res.dislike}'
-                  '\nFood Type: ${res.type}'
-                  '\nPhone: ${res.phone}'
-                  '\nPrice: ${res.price}'
-                  '\nLocation: '
-                  '\nRestaurant ID: ${res.restaurant_id}'),
-              RaisedButton(
-                  child: Text('location',
-                    style: TextStyle(
-                      color: Colors.white,
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.location_on, color: Colors.deepOrange,),
+                            Text(_location),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.attach_money, color: Colors.deepOrange,),
+                            Text(' ${widget.res.price}'),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  color: new Color(0xff622f74),
-                  onPressed:(){
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>FireMap(res: res,)),
-                    );
-                  }
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.thumb_up, color: Colors.blueAccent,),
+                            Text(' ${widget.res.like}'),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.thumb_down, color: Colors.redAccent,),
+                            Text(' ${widget.res.dislike}'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
               ),
             ],
           ),
