@@ -59,8 +59,14 @@ class ReviewList extends StatelessWidget {
                               children: <Widget>[
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("285"),
+                                    Text("${res.like}"),
                                     Text("Likes")
+                                  ],
+                                ),),
+                                Expanded(child: Column(
+                                  children: <Widget>[
+                                    Text("${res.dislike}"),
+                                    Text("Disikes")
                                   ],
                                 ),),
                                 Expanded(child: Column(
@@ -103,7 +109,7 @@ class ReviewList extends StatelessWidget {
                     ),
                     child: Column(
                       children: <Widget>[
-                        ListTile(title: Text("User information"),),
+                        ListTile(title: Text("Restaurant information"),),
                         Divider(),
                         ListTile(
                           title: Text("Email"),
@@ -112,7 +118,7 @@ class ReviewList extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text("Phone"),
-                          subtitle: Text("+977-9815225566"),
+                          subtitle: Text('${res.phone}'),
                           leading: Icon(Icons.phone),
                         ),
                         ListTile(
