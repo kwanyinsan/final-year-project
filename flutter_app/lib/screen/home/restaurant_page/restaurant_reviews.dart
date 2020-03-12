@@ -10,7 +10,8 @@ import 'package:flutter_app/shared/star_rating.dart';
 class ReviewList extends StatelessWidget {
 
   final Restaurant res;
-  ReviewList({this.res});
+  final String address;
+  ReviewList({this.res, this.address});
 
   @override
   Widget build(BuildContext context){
@@ -48,8 +49,7 @@ class ReviewList extends StatelessWidget {
                                   Text('${res.name}', style: Theme.of(context).textTheme.title,),
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
-                                    title: Text("Product Designer"),
-                                    subtitle: Text("Kathmandu"),
+                                    title: Text(address),
                                   ),
                                 ],
                               ),
@@ -59,20 +59,20 @@ class ReviewList extends StatelessWidget {
                               children: <Widget>[
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("285"),
+                                    Text("${res.like}"),
                                     Text("Likes")
                                   ],
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("3025"),
-                                    Text("Comments")
+                                    Text("${res.dislike}"),
+                                    Text("Disikes")
                                   ],
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("650"),
-                                    Text("Favourites")
+                                    Text("0"),
+                                    Text("Bookmarked")
                                   ],
                                 ),),
                               ],
@@ -103,16 +103,11 @@ class ReviewList extends StatelessWidget {
                     ),
                     child: Column(
                       children: <Widget>[
-                        ListTile(title: Text("User information"),),
+                        ListTile(title: Text("about ${res.name} ..."),),
                         Divider(),
                         ListTile(
-                          title: Text("Email"),
-                          subtitle: Text("butterfly.little@gmail.com"),
-                          leading: Icon(Icons.email),
-                        ),
-                        ListTile(
                           title: Text("Phone"),
-                          subtitle: Text("+977-9815225566"),
+                          subtitle: Text('${res.phone}'),
                           leading: Icon(Icons.phone),
                         ),
                         ListTile(
@@ -121,13 +116,8 @@ class ReviewList extends StatelessWidget {
                           leading: Icon(Icons.web),
                         ),
                         ListTile(
-                          title: Text("About"),
-                          subtitle: Text("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, illo repellendus quas beatae reprehenderit nemo, debitis explicabo officiis sit aut obcaecati iusto porro? Exercitationem illum consequuntur magnam eveniet delectus ab."),
-                          leading: Icon(Icons.person),
-                        ),
-                        ListTile(
                           title: Text("Joined Date"),
-                          subtitle: Text("15 February 2019"),
+                          subtitle: Text("0"),
                           leading: Icon(Icons.calendar_view_day),
                         ),
                       ],

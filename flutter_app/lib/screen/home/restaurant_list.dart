@@ -190,9 +190,11 @@ class _ResTileState extends State<ResTile> {
     super.initState();
   }
   String _location = 'Loading...';
+  String fullAddress = '';
   void updateLocation(String location) async {
     setState(() {
       this._location = location.split(',')[1];
+      this.fullAddress = location;
     });
   }
 
@@ -207,7 +209,7 @@ class _ResTileState extends State<ResTile> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ReviewList(res: widget.res)),
+              MaterialPageRoute(builder: (context) => ReviewList(res: widget.res, address: fullAddress)),
             );
           },
           child: Column(
