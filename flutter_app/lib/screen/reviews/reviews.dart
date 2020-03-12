@@ -3,6 +3,7 @@ import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/review.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
+import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/review.dart';
 import 'package:flutter_app/shared/loading.dart';
@@ -52,6 +53,7 @@ class ReviewsBuilder2 extends StatelessWidget {
   final UserData userData;
   ReviewsBuilder2({this.review, this.userData});
 
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -69,7 +71,7 @@ class ReviewsBuilder2 extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ResPage(res: resData)),
+                          builder: (context) => ReviewList(res: resData, address: 'placeholder')),
                     );
                   },
                     child: ListTile(

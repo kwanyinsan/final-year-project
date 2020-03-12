@@ -10,7 +10,8 @@ import 'package:flutter_app/shared/star_rating.dart';
 class ReviewList extends StatelessWidget {
 
   final Restaurant res;
-  ReviewList({this.res});
+  final String address;
+  ReviewList({this.res, this.address});
 
   @override
   Widget build(BuildContext context){
@@ -48,8 +49,7 @@ class ReviewList extends StatelessWidget {
                                   Text('${res.name}', style: Theme.of(context).textTheme.title,),
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
-                                    title: Text("location"),
-                                    subtitle: Text('${res.location}'),
+                                    title: Text(address),
                                   ),
                                 ],
                               ),
@@ -71,14 +71,8 @@ class ReviewList extends StatelessWidget {
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("1"),
-                                    Text("Comments")
-                                  ],
-                                ),),
-                                Expanded(child: Column(
-                                  children: <Widget>[
                                     Text("0"),
-                                    Text("Favourites")
+                                    Text("Bookmarked")
                                   ],
                                 ),),
                               ],
@@ -109,7 +103,7 @@ class ReviewList extends StatelessWidget {
                     ),
                     child: Column(
                       children: <Widget>[
-                        ListTile(title: Text("Restaurant information"),),
+                        ListTile(title: Text("about ${res.name} ..."),),
                         Divider(),
                         ListTile(
                           title: Text("Phone"),
@@ -118,7 +112,7 @@ class ReviewList extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text("Website"),
-                          subtitle: Text('${res.website}'),
+                          subtitle: Text("https://www.littlebutterfly.com"),
                           leading: Icon(Icons.web),
                         ),
                         ListTile(
