@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cf1d0f6-82c5-416b-97e8-ff247e0f9281" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review_select_res.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_app/lib/shared/star_rating.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/models/restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/models/restaurant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/models/review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/models/review.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_restaurant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/settings_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/add/settings_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/asset.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/network_image.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_reviews.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_reviews.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/template.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/screen/home/search.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/screen/home/search.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/services/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/services/review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/services/review.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/shared/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/shared/constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/shared/dialogbox.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/shared/dialogbox.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,101 +19,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_reviews.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
+            <state relative-caret-position="4009">
               <caret line="218" column="46" selection-start-line="218" selection-start-column="46" selection-end-line="218" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/shared/star_rating.dart">
+        <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/reviews/reviews.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_page.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="607">
+              <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_restaurant.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="170" selection-start-line="170" selection-end-line="179" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="146" column="24" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/shared/constants.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/services/database.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/models/restaurant.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/models/review.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flutter_app/lib/services/review.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="41" column="3" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -216,6 +118,7 @@
         <option value="$PROJECT_DIR$/flutter_app/lib/shared/star_rating.dart" />
         <option value="$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart" />
         <option value="$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_reviews.dart" />
+        <option value="$PROJECT_DIR$/flutter_app/lib/screen/reviews/reviews.dart" />
       </list>
     </option>
   </component>
@@ -233,10 +136,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
-    <option name="y" value="34" />
-    <option name="width" value="1606" />
-    <option name="height" value="1033" />
+    <option name="x" value="25" />
+    <option name="y" value="61" />
+    <option name="width" value="1678" />
+    <option name="height" value="994" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -297,24 +200,6 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="screen" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flutter-firebase-fyp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flutter-firebase-fyp" type="462c0819:PsiDirectoryNode" />
-              <item name="flutter_app" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="add" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flutter-firebase-fyp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flutter-firebase-fyp" type="462c0819:PsiDirectoryNode" />
-              <item name="flutter_app" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="screen" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="restaurant_page" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="flutter-firebase-fyp" type="b2602c69:ProjectViewProjectNode" />
@@ -424,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582375472114</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added write review function&#10;added starrating function&#10;fix bugs in add restaurant where location is not init">
+      <created>1582538036517</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582538036517</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -437,24 +329,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="34" width="1606" height="1033" extended-state="0" />
+    <frame x="178" y="50" width="1678" height="994" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.343467" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.3541409" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="Resources Explorer" order="5" weight="0.3298611" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32703003" />
+      <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.3267442" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.3287037" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32938388" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32938388" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="5" weight="0.3278496" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3070078" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.30697674" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.32938388" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
@@ -470,7 +362,8 @@
     <MESSAGE value="changed some UI&#10;bug fixes" />
     <MESSAGE value="changed some UI&#10;geopoint bug fixes&#10;minor bug fixes" />
     <MESSAGE value="added UI for restaurant review" />
-    <option name="LAST_COMMIT_MESSAGE" value="added UI for restaurant review" />
+    <MESSAGE value="added write review function&#10;added starrating function&#10;fix bugs in add restaurant where location is not init" />
+    <option name="LAST_COMMIT_MESSAGE" value="added write review function&#10;added starrating function&#10;fix bugs in add restaurant where location is not init" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/flutter_app/.flutter-plugins">
@@ -609,30 +502,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/asset.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret column="46" selection-start-column="46" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/network_image.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/template.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="45" selection-end-line="169" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/asset.dart" />
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/network_image.dart" />
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/template.dart" />
     <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/profile/profile_builder.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -649,26 +521,6 @@
           <caret line="268" selection-start-line="268" selection-end-line="269" selection-end-column="59" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/reviews/reviews.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="61" column="27" lean-forward="true" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review_select_res.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="109" column="78" lean-forward="true" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="78" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,10 +575,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/services/database.dart">
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="171">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_restaurant.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3002">
+          <caret line="170" selection-start-line="170" selection-end-line="179" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/shared/star_rating.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review_select_res.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="109" column="78" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="146" column="24" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -737,9 +629,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/services/database.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/flutter_app/lib/models/restaurant.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="285">
           <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="25" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
@@ -761,47 +660,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_restaurant.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="170" selection-start-line="170" selection-end-line="179" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/add/add_review.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="146" column="24" selection-start-line="146" selection-start-column="24" selection-end-line="146" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/home/restaurant_page/restaurant_reviews.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
+        <state relative-caret-position="4009">
           <caret line="218" column="46" selection-start-line="218" selection-start-column="46" selection-end-line="218" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flutter_app/lib/shared/star_rating.dart">
+    <entry file="file://$PROJECT_DIR$/flutter_app/lib/screen/reviews/reviews.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="607">
+          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
