@@ -48,8 +48,8 @@ class ReviewList extends StatelessWidget {
                                   Text('${res.name}', style: Theme.of(context).textTheme.title,),
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
-                                    title: Text("Product Designer"),
-                                    subtitle: Text("Kathmandu"),
+                                    title: Text("location"),
+                                    subtitle: Text('${res.location}'),
                                   ),
                                 ],
                               ),
@@ -71,13 +71,13 @@ class ReviewList extends StatelessWidget {
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("3025"),
+                                    Text("1"),
                                     Text("Comments")
                                   ],
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("650"),
+                                    Text("0"),
                                     Text("Favourites")
                                   ],
                                 ),),
@@ -112,28 +112,18 @@ class ReviewList extends StatelessWidget {
                         ListTile(title: Text("Restaurant information"),),
                         Divider(),
                         ListTile(
-                          title: Text("Email"),
-                          subtitle: Text("butterfly.little@gmail.com"),
-                          leading: Icon(Icons.email),
-                        ),
-                        ListTile(
                           title: Text("Phone"),
                           subtitle: Text('${res.phone}'),
                           leading: Icon(Icons.phone),
                         ),
                         ListTile(
                           title: Text("Website"),
-                          subtitle: Text("https://www.littlebutterfly.com"),
+                          subtitle: Text('${res.website}'),
                           leading: Icon(Icons.web),
                         ),
                         ListTile(
-                          title: Text("About"),
-                          subtitle: Text("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, illo repellendus quas beatae reprehenderit nemo, debitis explicabo officiis sit aut obcaecati iusto porro? Exercitationem illum consequuntur magnam eveniet delectus ab."),
-                          leading: Icon(Icons.person),
-                        ),
-                        ListTile(
                           title: Text("Joined Date"),
-                          subtitle: Text("15 February 2019"),
+                          subtitle: Text("0"),
                           leading: Icon(Icons.calendar_view_day),
                         ),
                       ],
