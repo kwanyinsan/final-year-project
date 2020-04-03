@@ -110,7 +110,7 @@
         <entry key="flutter">
           <value>
             <list>
-              <option value="D:/FYPflutter/flutter/packages/flutter/lib" />
+              <option value="C:/src/flutter/packages/flutter/lib" />
             </list>
           </value>
         </entry>
@@ -145,7 +145,7 @@
         <entry key="flutter_test">
           <value>
             <list>
-              <option value="D:/FYPflutter/flutter/packages/flutter_test/lib" />
+              <option value="C:/src/flutter/packages/flutter_test/lib" />
             </list>
           </value>
         </entry>
@@ -306,7 +306,7 @@
         <entry key="sky_engine">
           <value>
             <list>
-              <option value="D:/FYPflutter/flutter/bin/cache/pkg/sky_engine/lib" />
+              <option value="C:/src/flutter/bin/cache/pkg/sky_engine/lib" />
             </list>
           </value>
         </entry>
@@ -450,9 +450,9 @@
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/uuid-2.0.4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/xml-3.5.0/lib" />
-      <root url="file://D:/FYPflutter/flutter/bin/cache/pkg/sky_engine/lib" />
-      <root url="file://D:/FYPflutter/flutter/packages/flutter/lib" />
-      <root url="file://D:/FYPflutter/flutter/packages/flutter_test/lib" />
+      <root url="file://C:/src/flutter/bin/cache/pkg/sky_engine/lib" />
+      <root url="file://C:/src/flutter/packages/flutter/lib" />
+      <root url="file://C:/src/flutter/packages/flutter_test/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
