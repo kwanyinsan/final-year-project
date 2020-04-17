@@ -329,7 +329,7 @@ class _AddResState extends State<AddRes> {
                               "Thanks!",
                               "Added $name Successfully.",
                               'OK',
-                              "none");
+                              "upload");
                         }
                         isClicked = false;
                       }
