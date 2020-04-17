@@ -6,6 +6,7 @@ import 'package:flutter_app/screen/home/restaurant_list.dart';
 import 'package:flutter_app/screen/home/search.dart';
 import 'package:flutter_app/screen/profile/profile.dart';
 import 'package:flutter_app/screen/reviews/reviews.dart';
+import 'package:flutter_app/screen/setting/setting.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:provider/provider.dart';
@@ -73,8 +74,15 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
-                onTap: () {
+                onTap: () async {
+                  setState(() {
+                    widgetForBody = Setting();
+                    appBarTitle = 'Setting';
+                  });
                   Navigator.pop(context);
+
+
+
                 }),
             LoginLogout(),
           ],
