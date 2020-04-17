@@ -90,6 +90,12 @@ class _RegisterState extends State<Register> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
+                    if(!email.contains("@learner.hkuspace.hku.hk")) {
+                      setState(() {
+                        loading = false;
+                        error = 'You must be a HKUSPACE student to register!';
+                      });
+                    } else
                     if(_formKey.currentState.validate()){
                       setState(() => loading = true);
                       dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school, 'https://i.imgur.com/GcqJ5NM.png');
@@ -101,7 +107,7 @@ class _RegisterState extends State<Register> {
                       if(result == null) {
                         setState(() {
                           loading = false;
-                          error = 'Please supply a valid email';
+                          error = 'Please supply a valid email or this email have been used.';
                         });
                       }
                     }

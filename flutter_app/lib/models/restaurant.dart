@@ -21,7 +21,6 @@ class Restaurant {
       final coordinates = new Coordinates(location.latitude, location.longitude);
       var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
       var first = addresses.first;
-      print(addresses.first);
       return "${first.addressLine}";
   }
 
