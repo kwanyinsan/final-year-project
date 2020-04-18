@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
+import 'package:flutter_app/shared/star_rating.dart';
 import 'package:flutter_tags/tag.dart';
 
 
@@ -257,23 +258,7 @@ class _ResTileState extends State<ResTile> {
                     ),
                   ),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Icon(Icons.thumb_up, color: Colors.blueAccent,),
-                            Text(' ${widget.res.like}'),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Icon(Icons.thumb_down, color: Colors.redAccent,),
-                            Text(' ${widget.res.dislike}'),
-                          ],
-                        ),
-                      ],
-                    ),
+                    child: StarRating(rating: widget.res.rating),
                   ),
                 ],
               ),
