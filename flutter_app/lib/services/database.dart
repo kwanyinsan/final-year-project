@@ -49,7 +49,7 @@ class DatabaseService {
         image: doc.data['image'] ?? '',
         location: doc.data['location'] ?? new GeoPoint(0, 0),
         website: doc.data['website'] ?? '',
-        rating: doc.data['rating'] ?? 0,
+        rating: doc.data['rating'] ?? 3,
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
       );
     }).toList();

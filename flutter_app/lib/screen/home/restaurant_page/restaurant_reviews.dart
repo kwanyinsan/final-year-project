@@ -112,12 +112,12 @@ class ReviewList extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text("Website"),
-                          subtitle: Text("https://www.littlebutterfly.com"),
+                          subtitle: Text('${res.website}'),
                           leading: Icon(Icons.web),
                         ),
                         ListTile(
                           title: Text("Joined Date"),
-                          subtitle: Text("0"),
+                          subtitle: Text("4-2-2020"),
                           leading: Icon(Icons.calendar_view_day),
                         ),
                       ],
