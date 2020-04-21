@@ -10,16 +10,7 @@ class ResPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(res.name),
-        backgroundColor: Colors.deepOrange,
-      ),
-      body: Column(
-        children: <Widget>[
-          ReviewList(res: res)
-        ],
-      ),
-      backgroundColor: Colors.deepOrange[100],
+      body: ReviewList(res: res, address: "Placeholder",)
     );
   }
 }

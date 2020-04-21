@@ -19,35 +19,34 @@ class ProfileBuilder extends StatelessWidget {
               child: CircleAvatar(
                 radius: 40.0,
                 backgroundImage: NetworkImage('${userData.avatar}'),
+                backgroundColor: Colors.deepOrange,
               ),
             ),
-            SizedBox(height: 10,),
-            Text( userData.name ,
-                style: TextStyle(
-                  color: Colors.deepOrange,
-                  fontSize: 28.0,
-                  // fontWeight: FontWeight.bold,
-                )),
+            SizedBox(height: 10),
+            Center(
+              child: Text( userData.name ,
+                  style: TextStyle(
+                    color: Colors.deepOrange,
+                    fontSize: 28.0,
+                    // fontWeight: FontWeight.bold,
+                  )),
+            ),
             SizedBox(height: 20,),
             Row(
               children: <Widget>[
-                Icon(
-                  Icons.thumb_up,
-
-                ),
+                Icon(Icons.thumb_up, color: Colors.deepOrange,),
                 SizedBox(width: 10,),
-                Text('Likes:',
+                Text('Likes: 0',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: 16.0,
                       //fontWeight: FontWeight.bold,
                     )
                 ),
-                SizedBox(width: 130,),
-                Icon(
-                  Icons.people,),
+                SizedBox(width: 50,),
+                Icon(Icons.people, color: Colors.deepOrange,),
                 SizedBox(width: 10,),
-                Text('Followers:',
+                Text('Followers: 0',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: 16.0,
@@ -60,15 +59,12 @@ class ProfileBuilder extends StatelessWidget {
             SizedBox(height: 10,),
             Row(
               children: <Widget>[
-                Icon(
-                  Icons.email,
-                  color: Colors.grey[800],
-                ),
+                Icon(Icons.email, color: Colors.deepOrange,),
                 SizedBox(width: 10.0),
                 Text(
                   userData.email,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey[800],
                     fontSize: 16.0,
                     letterSpacing: 0.0,
                     //fontWeight: FontWeight.bold,
@@ -85,22 +81,12 @@ class ProfileBuilder extends StatelessWidget {
               ),
             ),
             Text(
-              'bookmarks',
+              'Bookmarks',
               style: TextStyle(
-                color: Colors.grey,
+                color: Colors.deepOrange,
                 letterSpacing: 2.0,
               ),
             ),
-            SizedBox(height: 10.0),
-
-            SizedBox(height: 30.0),
-
-
-            SizedBox(height: 30.0),
-
-            SizedBox(height: 10.0),
-
-
           ],
         ),
       ),

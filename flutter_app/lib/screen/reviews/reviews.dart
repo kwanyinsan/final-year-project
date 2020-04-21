@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/review.dart';
 import 'package:flutter_app/models/user.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/review.dart';
 import 'package:flutter_app/shared/loading.dart';
+import 'package:flutter_app/shared/star_rating.dart';
 
 class Reviews extends StatelessWidget {
   @override
@@ -53,7 +52,6 @@ class ReviewsBuilder2 extends StatelessWidget {
   final UserData userData;
   ReviewsBuilder2({this.review, this.userData});
 
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -61,37 +59,69 @@ class ReviewsBuilder2 extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Restaurant resData = snapshot.data;
-            return Padding(
-              padding: EdgeInsets.fromLTRB(5, 3, 5, 2),
-              child: Material(
-                color: Colors.white,
-                child: InkWell(
-                  splashColor: Colors.deepOrange,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ReviewList(res: resData, address: 'placeholder')),
-                    );
-                  },
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30.0,
-                        backgroundColor: Colors.deepOrange,
-                        backgroundImage: NetworkImage(userData.avatar),
-                      ),
-                      trailing: Icon(Icons.chevron_right),
-                      title: Text(userData.name + ' @ ' + resData.name),
-                      subtitle:
-                          Text('Like: ${review.like}, Dislike: ${review.dislike}'
-                              '\n${review.content}'),
-                    ),
+            return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
-              ),
-            );
-          } else {
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Card(
+                      elevation: 0.0,
+                      margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                      child: ListTile(
+                        //trailing: Icon(Icons.chevron_right),
+                        leading: CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: Colors.deepOrange,
+                          backgroundImage: NetworkImage('${userData.avatar}'),
+                        ),
+                        title: Text('${userData.name} @ ${resData.name}'),
+                        subtitle: Text('Followers: 0'),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25, 0, 20, 5),
+                      child: StarRating(
+                        rating: review.rating,
+                        size: 20,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25, 0, 20, 20),
+                      child: Text(
+                        review.content,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    Image.network(review.image),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(25, 20, 20, 20),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.thumb_up,
+                            color: Colors.blueAccent,
+                          ),
+                          Text(' ${review.like}'),
+                          SizedBox(width: 20),
+                          Icon(
+                            Icons.thumb_down,
+                            color: Colors.redAccent,
+                          ),
+                          Text(' ${review.dislike}'),
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      thickness: 1,
+                    )
+                  ],
+                ),
+              );
+          } else
             return Loading();
-          }
         });
   }
 }

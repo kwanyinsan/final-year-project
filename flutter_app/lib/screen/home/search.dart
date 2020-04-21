@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
+import 'package:flutter_app/screen/home/restaurant_page/restaurant_reviews.dart';
 import 'package:flutter_app/services/database.dart';
-import 'package:flutter_app/services/search.dart';
 import 'package:flutter_app/shared/loading.dart';
 
 class DataSearch extends SearchDelegate<String> {
@@ -103,6 +101,7 @@ class ResultTile extends StatefulWidget {
 
 class _ResultTileState extends State<ResultTile> {
   String _location = '';
+  String displaylocation = '';
 
   @override
   void initState() {
@@ -116,7 +115,7 @@ class _ResultTileState extends State<ResultTile> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ResPage(res: widget.res)),
+          MaterialPageRoute(builder: (context) => ReviewList(res: widget.res, address: _location,)),
         );
       },
       leading: CircleAvatar(
@@ -124,13 +123,14 @@ class _ResultTileState extends State<ResultTile> {
         backgroundImage: NetworkImage(widget.res.image),
       ),
       title: Text(widget.res.name),
-      subtitle: Text(_location),
+      subtitle: Text(displaylocation),
     );
   }
 
   void updateLocation(String location) {
     setState(() {
-      this._location = location.split(',')[1].trim();
+      this._location = location;
+      this.displaylocation = location.split(',')[1].trim();
     });
   }
 }

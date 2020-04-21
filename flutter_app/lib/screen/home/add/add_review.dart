@@ -1,18 +1,12 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/models/user.dart';
-import 'package:flutter_app/screen/home/add/add_location.dart';
-import 'package:flutter_app/services/database.dart';
 import 'package:flutter_app/services/review.dart';
-import 'package:flutter_app/shared/constants.dart';
 import 'package:flutter_app/shared/dialogbox.dart';
 import 'package:flutter_app/shared/star_rating.dart';
-import 'package:flutter_tags/tag.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +23,7 @@ class AddReview extends StatefulWidget {
 class _AddReviewState extends State<AddReview> {
 
   String content;
-  double rating = 5;
+  int rating = 5;
 
   final _formKey = GlobalKey<FormState>();
   // Image Captures
@@ -82,8 +76,6 @@ class _AddReviewState extends State<AddReview> {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
-    final color = Theme.of(context).accentColor;
-    final size = 36.0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,

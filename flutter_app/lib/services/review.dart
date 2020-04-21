@@ -9,7 +9,7 @@ class ReviewService {
   // collection reference
   final CollectionReference reviewCollection = Firestore.instance.collection('review');
 
-  Future<void> newReview(String restaurant_id, String user_id, String content, String image, int like, int dislike, double rating) async {
+  Future<void> newReview(String restaurant_id, String user_id, String content, String image, int like, int dislike, int rating) async {
     return await reviewCollection.document().setData({
       'restaurant_id': restaurant_id,
       'user_id': user_id,
@@ -31,7 +31,7 @@ class ReviewService {
         like: doc.data['review_like'] ?? 0,
         user_id: doc.data['user_id'] ?? [],
         image: doc.data['image'] ?? '',
-        rating: doc.data['rating'] ?? 0.0,
+        rating: doc.data['rating'] ?? 0,
       );
     }).toList();
   }
