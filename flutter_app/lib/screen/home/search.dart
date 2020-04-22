@@ -48,7 +48,13 @@ class DataSearch extends SearchDelegate<String> {
   }
 
   @override
-  Widget buildResults(BuildContext context) {}
+  Widget buildResults(BuildContext context) {
+    if (query.isEmpty) {
+      return Center(
+        child: Text('Please enter a keyword to search for restaurant.'),
+      );
+    }
+  }
 
   @override
   Widget buildSuggestions(BuildContext context) {

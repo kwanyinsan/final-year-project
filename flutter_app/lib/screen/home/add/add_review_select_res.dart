@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/restaurant.dart';
 import 'package:flutter_app/screen/home/add/add_review.dart';
-import 'package:flutter_app/screen/home/restaurant_page/restaurant_page.dart';
 import 'package:flutter_app/services/database.dart';
-import 'package:flutter_app/services/search.dart';
 import 'package:flutter_app/shared/loading.dart';
 
 class SelectRes extends SearchDelegate<String> {
@@ -51,7 +48,13 @@ class SelectRes extends SearchDelegate<String> {
   }
 
   @override
-  Widget buildResults(BuildContext context) {}
+  Widget buildResults(BuildContext context) {
+    if (query.isEmpty) {
+      return Center(
+        child: Text('Please enter select a restaurant.'),
+      );
+    }
+  }
 
   @override
   Widget buildSuggestions(BuildContext context) {

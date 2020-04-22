@@ -324,7 +324,7 @@ class _AddResState extends State<AddRes> {
                     } else
                       if (!isClicked) {
                         if(_formKey.currentState.validate()){
-                          await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), 0, 0, imageUrl, website, 0);
+                          await DatabaseService().newRes(name, stringFoodType, phone, new GeoPoint(location.latitude, location.longitude), imageUrl, website, 0);
                           showAlertDialog(context,
                               "Thanks!",
                               "Added $name Successfully.",

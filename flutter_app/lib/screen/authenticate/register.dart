@@ -39,11 +39,10 @@ class _RegisterState extends State<Register> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
             children: <Widget>[
               Center(
                 child: Image.network('https://i.imgur.com/gTp3dlW.png', height: 100, width: 100),
@@ -110,7 +109,7 @@ class _RegisterState extends State<Register> {
               Center(
                 child: Row(
                   children: <Widget>[
-                    SizedBox(width: 25,),
+                    Spacer(),
                     Text(
                       "Already have an account? ",
                       style: TextStyle(color: Colors.black), textAlign: TextAlign.center,
@@ -124,6 +123,7 @@ class _RegisterState extends State<Register> {
                         style: TextStyle(color: Colors.deepOrange), textAlign: TextAlign.center,
                       ),
                     ),
+                    Spacer(),
                   ],
                 ),
               ),

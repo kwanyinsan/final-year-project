@@ -30,6 +30,8 @@ class _ResListState extends State<ResList> {
     super.initState();
   }
 
+  bool doOnce = false;
+
   void callback(List<String> filterKeywords) {
     setState(() {
       this.filterKeyword = filterKeywords;

@@ -30,14 +30,13 @@ class _SignInState extends State<SignIn> {
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
               elevation: 0.0,
-              title: Text('Team Orange App'),
+              title: Text('Login'),
             ),
             body: Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
+                  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
                   children: <Widget>[
                     Center(
                       child: Image.network('https://i.imgur.com/gTp3dlW.png',
@@ -76,7 +75,7 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 5.0),
                     Row(
                       children: <Widget>[
-                        SizedBox(width: 170.0),
+                        Spacer(),
                         Text(
                           "Forgot Password?",
                           style: TextStyle(color: Colors.black, fontSize: 14.0),
@@ -114,9 +113,7 @@ class _SignInState extends State<SignIn> {
                     Center(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(
-                            width: 25,
-                          ),
+                          Spacer(),
                           Text(
                             "Don't have an account? ",
                             style: TextStyle(color: Colors.black),
@@ -132,6 +129,7 @@ class _SignInState extends State<SignIn> {
                               textAlign: TextAlign.center,
                             ),
                           ),
+                          Spacer(),
                         ],
                       ),
                     ),

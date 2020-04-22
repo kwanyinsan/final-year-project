@@ -205,7 +205,9 @@ class ReviewTile extends StatelessWidget {
                     child: Text(review.content,
                       style: TextStyle(fontSize: 18),),
                   ),
-                  Image.network(review.image),
+                  Center(
+                    child: Image.network(review.image),
+                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(25, 20, 20, 20),
                     child: Row(
