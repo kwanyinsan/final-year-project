@@ -100,6 +100,11 @@ class ReviewList extends StatelessWidget {
                         ListTile(title: Text("about ${res.name} ..."),),
                         Divider(),
                         ListTile(
+                          title: Text("Food"),
+                          subtitle: Text('${res.type.replaceAll(",", ", ")}'),
+                          leading: Icon(Icons.local_dining),
+                        ),
+                        ListTile(
                           title: Text("Phone"),
                           subtitle: Text('${res.phone}'),
                           leading: Icon(Icons.phone),

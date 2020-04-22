@@ -30,9 +30,9 @@ class _ResListState extends State<ResList> {
     super.initState();
   }
 
-  void callback(List<String> filterKeyword) {
+  void callback(List<String> filterKeywords) {
     setState(() {
-      this.filterKeyword = filterKeyword;
+      this.filterKeyword = filterKeywords;
     });
     resFiltered.clear();
     res.forEach((res) {
@@ -45,7 +45,7 @@ class _ResListState extends State<ResList> {
   bool compareString(String inputStr, List<String> items) {
     if (items.length == 0) {
       return true;
-    }
+    } else
     for(int i = 0; i < items.length; i++) {
       if(inputStr.contains(items[i])) {
         return true;
@@ -154,7 +154,7 @@ class _FilterState extends State<Filter> with AutomaticKeepAliveClientMixin{
                   },
                   key: Key(index.toString()),
                   index: index,
-                  active: false,
+                  active: true,
                   color: Colors.black12,
                   activeColor: Colors.deepOrange,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
