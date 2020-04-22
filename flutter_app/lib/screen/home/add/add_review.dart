@@ -235,7 +235,7 @@ class _AddReviewState extends State<AddReview> {
                             "Thanks!",
                             "Your review on ${widget.res.name} have been published.",
                             'OK',
-                            "upload");
+                            "uploadreview");
                       }
                       isClicked = false;
                     }

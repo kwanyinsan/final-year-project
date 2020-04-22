@@ -16,7 +16,7 @@ class _ProfileState extends State<Profile> {
 
     User user = Provider.of<User>(context);
 
-    if (user.uid == null) {
+    if (user == null) {
       Navigator.pop(context);
     }
 

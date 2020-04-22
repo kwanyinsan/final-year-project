@@ -11,7 +11,11 @@ showAlertDialog(BuildContext context, textTitle, textInfo, button, callback) {
       if (callback == 'none') {
         Navigator.of(context).pop();
       }
-      else if (callback == 'upload') {
+      else if (callback == 'uploadres') {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      }
+      else if (callback == 'uploadreview') {
         Navigator.of(context).pop();
         Navigator.of(context).pop();
         Navigator.of(context).pop();
