@@ -36,7 +36,7 @@ class ProfileBuilder extends StatelessWidget {
               children: <Widget>[
                 Icon(Icons.thumb_up, color: Colors.deepOrange,),
                 SizedBox(width: 10,),
-                Text('Likes: 0',
+                Text('Likes: 420',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: 16.0,
@@ -46,7 +46,7 @@ class ProfileBuilder extends StatelessWidget {
                 SizedBox(width: 50,),
                 Icon(Icons.people, color: Colors.deepOrange,),
                 SizedBox(width: 10,),
-                Text('Followers: 0',
+                Text('Followers: 69',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: 16.0,

@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
                   });
                   Navigator.pop(context);
                 }),
-            LoginLogout(),
+            LoginLogout(this.callback),
           ],
         ),
       ),
@@ -103,10 +103,23 @@ class _HomeState extends State<Home> {
       floatingActionButton: AddButton(),
     );
   }
+  void callback() {
+    setState(() {
+      this.widgetForBody = ResList();
+    });
+  }
 }
 
-class LoginLogout extends StatelessWidget {
+class LoginLogout extends StatefulWidget {
+  Function callback;
+  LoginLogout(this.callback);
+  @override
+  _LoginLogoutState createState() => _LoginLogoutState();
+}
+
+class _LoginLogoutState extends State<LoginLogout> {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
@@ -116,6 +129,7 @@ class LoginLogout extends StatelessWidget {
           title: Text('Logout'),
           onTap: () async {
             Navigator.pop(context);
+            this.widget.callback();
             _auth.signOut();
           });
     } else

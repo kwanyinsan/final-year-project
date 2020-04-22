@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String name = '';
-  String school = '';
+  String school = 'HKU SPACE';
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,9 @@ class _RegisterState extends State<Register> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Center(
+                child: Image.network('https://i.imgur.com/gTp3dlW.png', height: 100, width: 100),
+              ),
               SizedBox(height: 10.0),
               Text(' E-mail', textAlign: TextAlign.left,),
               TextFormField(
@@ -74,44 +77,55 @@ class _RegisterState extends State<Register> {
                 },
               ),
               SizedBox(height: 10.0),
-              Text(' School', textAlign: TextAlign.left,),
-              TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'school'),
-                validator: (val) => val.isEmpty ? 'Enter an school name' : null,
-                onChanged: (val) {
-                  setState(() => school = val.trim());
-                },
-              ),
-              SizedBox(height: 5.0),
-              RaisedButton(
-                  color: Colors.deepOrange,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () async {
-                    if(!email.contains("@learner.hkuspace.hku.hk")) {
-                      setState(() {
-                        loading = false;
-                        error = 'You must be a HKUSPACE student to register!';
-                      });
-                    } else
-                    if(_formKey.currentState.validate()){
-                      setState(() => loading = true);
-                      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school, 'https://i.imgur.com/GcqJ5NM.png');
-                      if (result != null) {
-                        //TODO: scuessfully registered
-
-                        Navigator.pop(context);
+              Center(
+                child: RaisedButton(
+                    color: Colors.deepOrange,
+                    child: Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      if(_formKey.currentState.validate() && email.contains("@learner.hkuspace.hku.hk")){
+                        setState(() => loading = true);
+                        dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, school, 'https://i.imgur.com/GcqJ5NM.png');
+                        if (result != null) {
+                          print(" >>> Register Action $email");
+                          Navigator.of(context).pop();
+                        } else
+                        if(result == null) {
+                          setState(() {
+                            loading = false;
+                            error = 'Please supply a valid email or this email have been used.';
+                          });
+                        }
                       } else
-                      if(result == null) {
                         setState(() {
                           loading = false;
-                          error = 'Please supply a valid email or this email have been used.';
+                          error = 'You must be a HKUSPACE student to register.';
                         });
-                      }
                     }
-                  }
+                ),
+              ),
+              SizedBox(height: 5),
+              Center(
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(width: 25,),
+                    Text(
+                      "Already have an account? ",
+                      style: TextStyle(color: Colors.black), textAlign: TextAlign.center,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        widget.toggleView();
+                      },
+                      child: Text(
+                        "Login Here.",
+                        style: TextStyle(color: Colors.deepOrange), textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 12.0),
               Text(

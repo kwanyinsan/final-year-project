@@ -59,20 +59,14 @@ class ReviewList extends StatelessWidget {
                               children: <Widget>[
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("${res.like}"),
-                                    Text("Likes")
+                                    Text("Rating"),
+                                    Text("${res.rating}.0"),
                                   ],
                                 ),),
                                 Expanded(child: Column(
                                   children: <Widget>[
-                                    Text("${res.dislike}"),
-                                    Text("Disikes")
-                                  ],
-                                ),),
-                                Expanded(child: Column(
-                                  children: <Widget>[
-                                    Text("0"),
-                                    Text("Bookmarked")
+                                    Text("Bookmarked"),
+                                    Text("2")
                                   ],
                                 ),),
                               ],
