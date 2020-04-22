@@ -30,8 +30,6 @@ class FilterService {
         name: doc.data['name'] ?? '',
         phone: doc.data['phone'] ?? 0,
         type: doc.data['type'] ?? '',
-        like: doc.data['like'] ?? 0,
-        dislike: doc.data['dislike'] ?? 0,
         price: doc.data['price'] ?? 0,
         image: doc.data['image'] ?? '',
         //location: _getLocation(new Coordinates(doc.data['location'].latitude, doc.data['location'].longitude)),
