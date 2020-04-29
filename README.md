@@ -2,8 +2,8 @@
 
 # About Team Orange
 
-Team Orange App is a student-only food review platform application.
-Developed with Flutter and Firebase
+Team Orange App is a student-only food review platform application.  
+Developed with Flutter and Firebase  
 
 # Screenshots
 <img src="https://i.imgur.com/jNUGYmv.jpg">
