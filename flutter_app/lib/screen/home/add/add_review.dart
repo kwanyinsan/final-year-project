@@ -87,9 +87,10 @@ class _AddReviewState extends State<AddReview> {
           child: ListView(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             children: <Widget>[
-              Image.network('https://i.imgur.com/gTp3dlW.png', height: 50, width: 50,),
               SizedBox(height: 20.0),
-              Text('Restaurant: \n${widget.res.name}', style: TextStyle(fontSize: 20),),
+              Image.network('https://i.imgur.com/gTp3dlW.png', height: 100, width: 100,),
+              SizedBox(height: 20.0),
+              Text("${widget.res.name}'s Review", style: TextStyle(fontSize: 30),),
               SizedBox(height: 20.0),
               Text(' Your Opinion: '),
               Container(
@@ -142,7 +143,7 @@ class _AddReviewState extends State<AddReview> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(' Image', textAlign: TextAlign.left,),
+                  Text(' Image (Optional)', textAlign: TextAlign.left,),
                   SizedBox(
                     height: 5,
                   ),

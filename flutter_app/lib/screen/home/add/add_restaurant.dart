@@ -133,7 +133,8 @@ class _AddResState extends State<AddRes> {
           child: ListView(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             children: <Widget>[
-              Image.network('https://i.imgur.com/gTp3dlW.png', height: 50, width: 50,),
+              SizedBox(height: 20.0),
+              Image.network('https://i.imgur.com/gTp3dlW.png', height: 100, width: 100,),
               SizedBox(height: 20.0),
               Text(' Restaurant Name', textAlign: TextAlign.left,),
               TextFormField(
