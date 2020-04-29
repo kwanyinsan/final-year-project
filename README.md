@@ -2,7 +2,8 @@
 
 # About Team Orange
 
-Team Orange App is a student-only food review platform application. Created by HKU SPACE Computer Science Students.
+Team Orange App is a student-only food review platform application.
+Developed with Flutter and Firebase
 
 # Screenshots
 <img src="https://i.imgur.com/jNUGYmv.jpg">
